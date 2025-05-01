@@ -6,8 +6,8 @@ const toc = require('remark-toc');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'OER Course Title',
-  tagline: 'OER Tag/Keyword',
+  title: 'OPS345-CE',
+  tagline: 'OPS345 Continuing Education',
   url: 'https://seneca-ictoer.github.io/',
   baseUrl: '/OERTemplate/',
   trailingSlash: false,
@@ -18,7 +18,7 @@ module.exports = {
   projectName: 'OERTemplate',
   themeConfig: {
     navbar: {
-      title: 'OER Course Title',
+      title: 'OPS345-CE',
       logo: {
         alt: 'Seneca Polytechnic',
         src: 'img/logo.svg',
@@ -38,7 +38,7 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'OER Course Title',
+          title: 'OPS345-CE',
           items: [
             {
               html: `<a href='#' id='pwa-button' class='footer__link-item' hidden>Install as an App</a>`,
@@ -46,7 +46,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Seneca Polytechnic.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Candice Carman.`,
     },
     prism: {
       theme: lightCodeTheme,

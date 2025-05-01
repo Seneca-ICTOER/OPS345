@@ -6,8 +6,8 @@ const toc = require('remark-toc');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'OPS345-CE',
-  tagline: 'OPS345 Continuing Education',
+  title: 'OPS345 - Open System Application Server',
+  tagline: 'OPS345-CE',
   url: 'https://seneca-ictoer.github.io/',
   baseUrl: '/OPS345-CE/',
   trailingSlash: false,
@@ -18,7 +18,7 @@ module.exports = {
   projectName: 'OPS345-CE',
   themeConfig: {
     navbar: {
-      title: 'OPS345-CE',
+      title: 'OPS345 - Open System Application Server',
       logo: {
         alt: 'Seneca Polytechnic',
         src: 'img/logo.svg',
@@ -38,7 +38,7 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'OPS345-CE',
+          title: 'OPS345 - Open System Application Server',
           items: [
             {
               html: `<a href='#' id='pwa-button' class='footer__link-item' hidden>Install as an App</a>`,

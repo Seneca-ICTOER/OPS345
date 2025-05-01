@@ -9,13 +9,13 @@ module.exports = {
   title: 'OPS345-CE',
   tagline: 'OPS345 Continuing Education',
   url: 'https://seneca-ictoer.github.io/',
-  baseUrl: '/OERTemplate/',
+  baseUrl: '/OPS345-CE/',
   trailingSlash: false,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'seneca-ictoer',
-  projectName: 'OERTemplate',
+  projectName: 'OPS345-CE',
   themeConfig: {
     navbar: {
       title: 'OPS345-CE',

@@ -1,151 +1,303 @@
 ---
 id: lab8
-title: Lab 8 - DNS & SSL
+title: Lab 8 - Elastic Beanstalk
 sidebar_position: 8
-description: Configure DNS using MyCustomDomain & SSL with Let's Encrypt.
+description: Hosting Wordpress using AWS Elastic Beanstalk
 ---
 
-# Lab 8 - DNS & SSL
+# Lab 8 - Elastic Beanstalk
 
 ## Overview
 
 This week's lab will cover the following:
 
-- Using a service to register a domain name
-- Generating TLS/SSL certificates with Let's Encrypt & Certbot
-- Configuring https on your Apache web server
+- Creating a new RDS
+- Configuring Elastic Beanstalk
+- Installing and configuring Wordpress
 
-## Registering a domain name
+When you have installed Wordpress previously, you simply uploaded the source code and the first time you load the webpage, provided the database connector information. However, Elastic Beanstalk applications are meant to be disposable.
 
-You should have received an email indicating you have access to [My.Custom.Domain](https://mycustomdomain.senecapolytechnic.ca/). You will be using this to create an A record and map it to the elastic IP of your instance from Lab 7. If you do not have access please **contact your professor** so you can proceed.
+Normally, when you add that database connector info, it is saved in a file called _wp-config.php_ on the webserver VM. This is fine for a traditional setup. However, **_in Elastic Beanstalk, changes made to static HTML or PHP are not saved if the Beanstalk application restarts_**, which it will do often. Whenever the application restarts, it will reload from the source zip file and the original, empty connector file. If you did this the traditional way, you'd have to constantly re-enter your DB connector info every time you started up your Learner Lab environment.
 
-### Creating an A record
+We _could_ add the DB connector info to _wp-config.php_ manually before we upload the source code, but there's a much better way.
 
-Login to [My.Custom.Domain](https://mycustomdomain.senecapolytechnic.ca/). You should see a screen similar to the one below.
+We use **environment variables** to allow us to put all the info in the Elastic Beanstalk application wizard directly. That way, every time the application restarts and reloads from the source code zip, it'll then read our saved connector information from AWS itself. Read below for details and steps.
 
-![My.Custom.Domain login](/img/my-custom-domain-login.png)
+**Note:** All other information, like the Wordpress website name, users, theme settings, blog posts, etc., are saved in the actual database you created in RDS. This database does not get reset when the Elastic Beanstalk application restarts, so your actual blog data will remain intact.
 
-Click **Create DNS Records**.
+## Investigation 1: Creating a RDS instance
 
-On the following screen, click **Create your first DNS Record!**, and fill in the following information (see the following screenshot for an example)
+Start your session in the Learner Lab by clicking on the **Start Lab** button. Once the red dot has turned green, click on it to enter the Learner Lab and access the AWS Console interface. You are going to create a new RDS instance.
 
-- **Name:** www
-- **Type:** A Record (IPv4 Address)
-- **Value:** _your elastic IP_
-- **Course:** OSL745
-- **Description:** Address record for www instance.
+From the **Console Home** navigate to **Database** > **RDS**. See the following screenshot for reference.
 
-Click **Create**.
+![Relational Database](/img/rds.png)
 
-![Creating an address record](/img/dns-a-record.png)
+Click **Create database** (part way down the screen). Use the following options.
 
-### Testing Your DNS configuration
+1. Standard create
+1. Engine type: **MariaDB**
+1. Engine Version: **MariaDB 11.4.4** (or current latest version available)
+1. Templates: **Free tier**
+1. DB instance identifier: **wordpress-elasticbeanstalk**
+1. Master username: **admin**
+1. Credentials management: **Self Managed**
+1. Auto generate a password: **Checked**
+1. DB instance class: **db.t3.micro**
+1. Allocated storage: **5 GiB**
+1. Enable storage autoscaling: **Unchecked**
+1. Virtual private cloud (VPC): **Wordpress VPC**
+1. DB subnet group: **Create new DB Subnet Group** (if you're redoing your database creation, there will already be an entry here. Make sure you're using the _Wordpress VPC_ in the setting above!)
+1. Public access: **No**
+1. VPC security group: **Choose existing**
+1. Existing VPC security groups:
+   1. **Remove default VPC**
+   1. **Add _Wordpress Database SG_** (look to see that it's there below the dropdown after you select it)
+1. Availability Zone: **us-east-1a**
+1. Monitoring > Enable Enhanced monitoring: **Unchecked**
+1. Below the Monitoring section, Additional configuration > Initial database name: **wordpress** (Write the database name down! You will need this later.)
+1. Enable automated backups: **Unchecked**
+1. Enable encryption: **Unchecked**
 
-1. Launch the AWS Learner Lab and login. Make sure your www instance is running.
-1. Next, login to your first instance and issue the following commands. Note the output of each. **Substitute your username in the provided commands**.
+Click **Create database**.
 
-```bash
-nslookup www.yourusername.mystudentproject.ca
-```
+This will take a few minutes to create. Once the database has finished creating, click on the _View connection details_ button by the green success message at the top of the page. This gives you your database password.
 
-and
+Store the following connection information about your RDS instance in your lab logbook or a saved document. You'll need it later:
 
-```bash
-dig www.yourusername.mystudentproject.ca
-```
+1. **Endpoint**
+1. **Initial database name**
+1. **Master username**
+1. **Master password**
 
-3. Access dig via the [Google Admin ToolBox](https://toolbox.googleapps.com/apps/dig/#A/) and enter the value **www.yourusername.mystudentproject.ca** into the Name field (make sure the record type is set to **A**). You should see output similar to the following:
+### Connecting to your database from www
 
-![Google Admin ToolBox](/img/google-admin-toolbox.png)
-
-4. Provided all of the above displayed the correct output, open a web browser and type **www.yourusername.mystudentproject.ca** (replace your username) in the URL bar of a web browser. This could be on your PC, or any device. You should see your website from Lab 7! If you don't, double check and make sure you see **http://** and not **https://**.
-
-Make sure you see the correct output from the previous commands indicating your DNS is working before proceeding to the next step.
-
-> Note: You can now login via SSH (from the command line) using your FQDN! 
->
-> Use the command **ssh ubuntu@www.username.mystudentproject.ca**
-
-## Preparing your system to generate and install an SSL certificate
-
-Login to your **www** instance. You are going to install Certbot, which will automate configuring HTTPS using Let's Encrypt.
-
-### Installing Certbot
-
-First, check to see if it is available by issuing the following command.
-
-```bash
-sudo apt search certbot
-```
-
-You should see the following output.
-
-![Confirming certbot is available to install with apt](/img/apt-search-certbot.png)
-
-Once you have confirmed it is available, install it.
+Login to your **www** instance, and issue the following command to connect to your database. Be sure to substitute the credentials you wrote down earlier.
 
 ```bash
-sudo apt -y install certbot python3-certbot-apache
+mysql -u admin -h **endpoint** -p
 ```
 
-### Configuring an Apache Virtual Host
+Enter your Master password when prompted. You should see the following screen indicating a successful connection.
 
-Create the and edit a file for your virtual host configuration. You can use either vi or nano. Replace wwwusernamemystudentprojectca with your domain name, with the www and top level domain, but without the **dots(.)**. This will allow Certbot to find the correct VirtualHost block and update it.
+![MariaDB connected](/img/mariadb-connect.png)
+
+Issue the following command to display the databases.
 
 ```bash
-sudo nano /etc/apache2/sites-available/wwwusernamemystudentprojectca.conf
+show databases;
 ```
 
-Enter the following text (again, replacing the username with yours).
+Disconnect from the database.
 
 ```bash
-ServerName www.jasoncarman.mystudentproject.ca
+quit;
 ```
 
-### Testing and Reloading the Apache configuration
+## Investigation 2: Wordpress Source Code Modification
 
-Enter the following command to test your Apache configuration.
+### Download and Unzip - Local Computer
 
-```bash
-sudo apache2ctl configtest
-```
+1. On your local computer, download the current Wordpress source code from here: https://wordpress.org/latest.zip
+1. Unzip the file. You should end up with a _wordpress_ directory. (Do not delete the original .zip file)
 
-You should see a message indicating Syntax OK. If you don't, double check your file name and contents for errors. Sample output follows.
+### Modify Wordpress Configuration File
 
-![apachectl configtest indicating syntax is ok](/img/apache2-configtest.png)
+#### Duplicate and Open Configuration File
 
-Now you can reload apache2 using systemctl.
+1. In the local _wordpress_ folder, find a file called: **wp-config-sample.php**
+1. Duplicate this file, and call it: **wp-config.php**
+1. Open **wp-config.php** in a text editor. You will want something that supports syntax highlighting., such as the default (graphical) text editor in Ubuntu, or something fancier like Visual Studio Code.
 
-```bash
-sudo systemctl reload apache2
-```
+#### Adding Database Connector Info as Environment Variables
 
-## Generating an SSL certificate using Let's Encrypt and Certbot
+In this file (wp-config.php), you will be adding database connector information as **_environment variables_**, not the actual connector information. (We'll add that information later.)
 
-Now you are ready to generate your SSL certificate using Certbot. You are going to configure Apache to reconfigure and reload the configuration whenever necessary. This way you do not need to worry about updating your SSL certificate every 90 days, which is when certificates issued through Let's Encrypt and Certbot expire. Issue the following command:
+Find the following lines and add the bolded values:
 
-```bash
-sudo certbot --apache
-```
+1. define('DB_NAME', **getenv('DB_NAME')**);
+1. define('DB_USER', **getenv('DB_USER')**);
+1. define('DB_PASSWORD', **getenv('DB_PASSWORD')**);
+1. define('DB_HOST', **getenv('DB_HOST')**);
 
-At the email address prompt, enter your Seneca Polytechnic issued email.
-![Running certbot](/img/sudocertbotapache.png)
+#### Adding Authentication Unique Keys and Salts as Environment Variables
 
-Accept the terms of service. Answer as you wish for sharing your email, then enter your domain name. See the following example.
-![Generating your certificate](/img/certbotregister.png)
+In the same file (wp-config.php), you'll be adding the authentication keys and salts as **_environment variables_**.
 
-Update your **Wordpress Website SG** security group rules to allow incoming HTTPS traffic from the anywhere IP: 0.0.0.0/0
+Find the following lines and add the bolded values:
 
-## Testing your configuration
+1. define('AUTH_KEY', **getenv('AUTH_KEY')**);
+1. define('SECURE_AUTH_KEY', **getenv('SECURE_AUTH_KEY')**);
+1. define('LOGGED_IN_KEY', **getenv('LOGGED_IN_KEY')**);
+1. define('NONCE_KEY', **getenv('NONCE_KEY')**);
+1. define('AUTH_SALT', **getenv('AUTH_SALT')**);
+1. define('SECURE_AUTH_SALT', **getenv('SECURE_AUTH_SALT')**);
+1. define('LOGGED_IN_SALT', **getenv('LOGGED_IN_SALT')**);
+1. define('NONCE_SALT', **getenv('NONCE_SALT')**);
 
-Open a web browser try to access your Apache test page using HTTPS. It should work!
+![Image: Adding database connector information to wp-config.php.](/img/a2_wp-config-example.png)
+_Figure 1: Adding database connector information to wp-config.php._
 
-## Lab 8 Sign-Off (Show Instructor)
+**Save** the file.
+
+### Zip As New File and Rename - Local Computer
+
+1. Find the **wordpress** folder on your local computer.
+1. _Zip the entire wordpress directory_, not just the files inside. (Use the zip compression protocol. Don't use something else like .rar.)
+1. Rename your new zip file: **wordpress-6.7.2-_modded_.zip** (Use whatever version the source zip file has.)
+
+## Investigation 3: Elastic Beanstalk
+
+Navigate to **Compute** > **Elastic Beanstalk**. See the following screenshot for reference.
+
+![Elastic Beanstalk](/img/elasticbeanstalk.png)
+
+Click **Create application**, and use the following settings:
+
+### Environment Tier
+
+Select: **Web server environment**
+
+### Main settings
+
+1. Application name: **wordpress**
+1. Environment name: **Wordpress-env**
+1. Platform: **PHP**
+1. Platform branch: **PHP 8.4** (or current latest)
+1. Application code: **Upload your code**
+1. Version label: **wordpress-6.7.2** (Use the version from your zip filename)
+1. Local file: **wordpress-6.7.2-_modded_.zip** (From your local computer)
+1. Presets: **Single instance (free tier eligible)**
+
+Click next
+
+### Configure Service Access
+
+Select: Use an existing service role
+
+1. Service role: **LabRole**
+1. EC2 key pair: **vockey**
+1. IAM instance profile: **LabInstanceProfile**
+
+Click next
+
+### Set up networking, database and tags
+
+1. VPC: **Wordpress VPC**
+
+#### Instance Settings
+
+1. Public IP address: **Checked**
+1. **Instance** subnets: **Public Subnet 1, Public Subnet 2** (both checked)
+
+Click next
+
+#### Database settings
+
+1. **Database** subnets: **Private Subnet 1, Private Subnet 2** (both checked)
+
+Click **Enable database**
+
+1. Username: admin
+1. Password: _The password you copied and wrote down earlier_
+
+Click next
+
+### Configure instance traffic and scaling
+
+1. EC2 Security Groups: **Wordpress Website SG** & **Wordpress Database SG** (both checked)
+1. Leave the rest default
+
+Click next
+
+### Configure updates, monitoring and logging
+
+#### Monitoring
+
+1. System: **Basic**
+
+#### Managed platform updates
+
+1. Managed updates: **Unchecked**
+
+#### Email notifications
+
+1. Email notification: **Add your Seneca email**
+
+#### Platform Software
+
+Before beginning this section, you will need two things:
+
+1. Your database connector information (you saved this, right?)
+1. Randomly generated auth keys and salts from here: https://api.wordpress.org/secret-key/1.1/salt/ (it's a good idea to save these in a text file, too)
+
+#### Container Options
+
+1. Proxy server: **Apache**
+1. Document root: **/wordpress**
+1. Click **Add environment property** and add the following **Environment properties**
+   1. DB_HOST: **your RDS database URL**
+   1. DB_NAME: **wordpress**
+   1. DB_USER: **admin**
+   1. DB_PASSWORD: **your auto-generated database password**
+   1. AUTH_KEY: **(use gathered info from salt page)**
+   1. SECURE_AUTH_KEY: **(use gathered info from salt page)**
+   1. LOGGED_IN_KEY: **(use gathered info from salt page)**
+   1. NONCE_KEY: **(use gathered info from salt page)**
+   1. AUTH_SALT: **(use gathered info from salt page)**
+   1. SECURE_AUTH_SALT: **(use gathered info from salt page)**
+   1. LOGGED_IN_SALT: **(use gathered info from salt page)**
+   1. NONCE_SALT: **(use gathered info from salt page)**
+
+Hint: None of these values should have single quotes in them. (i.e. ')
+
+![Image: Adding database connector information, auth keys and salts to your Elastic Beanstalk application as static Environment Variables.](/img/a2_beanstalk-environment-variables-example.png)
+_Figure 2: Adding database connector information, auth keys and salts to your Elastic Beanstalk application as static **Environment Variables**._
+
+Click next.
+
+#### Review options
+
+Review all settings and ensure they match the instructions above. Once you hit **Submit**, the application will take several minutes to create.
+
+### Create the application.
+
+click **Submit** when ready.
+
+While you wait for the creation to complete, check your e-mail to confirm your notification subscription.
+
+## Investigation 4: Accessing Wordpress
+
+Open the URL presented in the Wordpress EBS instance and begin the site setup.
+
+### Site Information
+
+Set the following site information:
+
+1. Site Title: **Your name's blog**
+1. Username: **_yourSenecaUsername_**
+1. Password: **Choose a strong password** (do not reuse the DB password!)
+1. Your Email: **_yourSenecaEmailAddress_**
+1. Search engine visibility: **Unchecked**
+
+> If you get a message indicating a failure to connect, make sure you zipped the **wordpress** folder and it's contents only. You can rezip the file and click **Upload and deploy** if necessary.
+
+### Blog Post:
+
+Add a blog post detailing the following:
+
+- What did you think of this lab?
+- What was the most difficult part for you?
+- What was the easiest part for you?
+- How did you find this course?
+
+## Lab 10 Sign-Off (Show Instructor)
 
 Show your professor the following:
 
-- Your Elastic IP
-- Accessing your Apache2 Ubuntu Default Page through a web browser using **https**
+- Your blog post.
 
 ## Exploration Questions
-1. What port did you have to allow inbound in the **Wordpress Website SG** security group?
+
+1. What is Elastic Beanstalk
+1. How is this lab similar to the wordpress install in **Lab 9** and **Assignment 1**? How is it different?

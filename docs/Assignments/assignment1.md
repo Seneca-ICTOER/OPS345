@@ -2,11 +2,11 @@
 id: assignment1
 title: Assignment 1
 sidebar_position: 1
-description: OSL745 Assignment 1
+description: OPS345 Assignment 1
 ---
 
 # Assignment 1
-
+# UNDER DEVELOPMENT
 ## Overview
 
 In Assignment 1 you will install configure a LAMP stack, which is an acronym that originally stood for Linux, Apache, MySQL and PHP. LAMP is a commonly used acronym and combination of technologies for hosting web based applications. In fact, newer technologies that have come along to replace elements of the LAMP stack tend to pick their name based on the letter in the acronym that they are providing services for (ie MariaDB or MongoDB, Perl or Python). You will then use this platform to install and host Wordpress (a popular free and open source content management system or CMS). You will also configure your firewall to further enhance the security of your network.

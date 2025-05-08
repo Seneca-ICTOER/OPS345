@@ -6,6 +6,7 @@ description: OSL745 Assignment 2
 ---
 
 # Assignment 2: Elastic Load Balancing and Auto Scaling
+# Under Development
 
 ## Objectives of Assignment 2
 

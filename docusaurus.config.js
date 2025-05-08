@@ -7,7 +7,7 @@ import rehypeKatex from 'rehype-katex';
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'OPS345 - Open System Application Server',
-  tagline: 'OPS345-CE',
+  tagline: 'OPS345',
   url: 'https://seneca-ictoer.github.io/',
   baseUrl: '/OPS345-CE/',
   trailingSlash: false,
@@ -15,7 +15,7 @@ module.exports = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'seneca-ictoer',
-  projectName: 'OPS345-CE',
+  projectName: 'OPS345',
   themeConfig: {
     navbar: {
       title: 'OPS345 - Open System Application Server',

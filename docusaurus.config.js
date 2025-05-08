@@ -9,7 +9,7 @@ module.exports = {
   title: 'OPS345 - Open System Application Server',
   tagline: 'OPS345',
   url: 'https://seneca-ictoer.github.io/',
-  baseUrl: '/OPS345-CE/',
+  baseUrl: '/OPS345/',
   trailingSlash: false,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',

@@ -16,7 +16,7 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :---------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------- |
-| Introduction to Amazon Web Services (AWS) | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vSrlrD8lt2yEyQI-wOYKyYmrgggakrHbRMZE9kO5p3QsaGmZ4ZoaqVO4mFBmjm6FqPpzH-h1qIU94XM/pub?start=false&loop=false&delayms=3000 | [Lab 1](Labs/lab1.md) Worth 1.75% (Due Week 8) |
+| Introduction to Amazon Web Services (AWS) | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vSrlrD8lt2yEyQI-wOYKyYmrgggakrHbRMZE9kO5p3QsaGmZ4ZoaqVO4mFBmjm6FqPpzH-h1qIU94XM/pub?start=false&loop=false&delayms=3000) | [Lab 1](Labs/lab1.md) Worth 1.75% (Due Week 8) |
 
 ## Week 2
 

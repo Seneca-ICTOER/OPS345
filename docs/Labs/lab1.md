@@ -25,7 +25,7 @@ You should have received an email (in your Seneca Polytechnic email) from your p
 
 ![AWS Invitation](/img/aws-invitation.png)
 
-The AWS Learner Lab provides a sandbox environment where you can build, configure and deploy AWS assets such as instances. There are some limitations as to what you can do, however it provides all the functionality we require for this course. You are limited to $100 credit at no cost within the learner lab. Once this runs out your learner lab will be disabled. Additionally, there is no way to add funds to this pool. If you follow the lab instructions properly you should not have any issues.
+The AWS Learner Lab provides a sandbox environment where you can build, configure and deploy AWS assets such as instances. There are some limitations as to what you can do, however it provides all the functionality we require for this course. You are limited to $50 credit at no cost within the learner lab. Once this runs out your learner lab will be disabled. Additionally, there is no way to add funds to this pool. If you follow the lab instructions properly you should not have any issues.
 
 Once you have accepted your invitation and logged into the [AWS Learner Lab](https://awsacademy.instructure.com/login/canvas) navigate to **Courses** (on the left hand side) > **Modules** > **Learner Lab**. You should see a screen that looks like the following:
 ![AWS Learner Lab home](/img/learnerlabhome.png)
@@ -36,7 +36,7 @@ Some important things to note on this screen:
 
 **Stop Lab**: Stops the Learner Lab environment.
 
-**Used $0 of $50**: Shows the balance used of your $50 credit. If this hits $50 of $50 used, your learner lab is disabled. Be careful.
+**Used $0 of $50**: Shows the balance used of your $50 credit. If this hits \$50 of \$50 used, your learner lab is disabled. Be careful.
 
 **AWS with a red dot next to it**: Once your lab has started, this will turn green. You can then click on this to open the environment.
 
@@ -178,17 +178,17 @@ ssh ubuntu@ec2-23-20-90-70.compute-1.amazonaws.com
 
 Once you have confirmed this works, you can logout from your Codespaces terminal and shut everything down (Codespaces and the AWS Learner Lab). For proof, show your professor a successful connection to your instance (either via ec2 instance connect, SSH from Codespaces or both).
 
-## Lab 5 Sign-Off (Show Instructor)
+## Lab 1 Sign-Off (Show Instructor)
 
 Show your professor a successful connection to your instance. The following Exploration Questions are for furthering your knowledge only, and may appear on quizzes or tests at any time later in this course.
 
 ## Exploration Questions
 
 1. How do you start/stop the AWS learner lab?
-2. How do you enter the AWS learner lab once you have started it?
-3. What happens to your learner lab if your credits hit $50 of $50 used?
-4. Where do you go to edit networking configuration options such as **security groups**?
-5. Where do you go to launch an instance?
-6. What is an instance?
-7. What command do you use to access an instance in AWS from your command line?
-8. What is public-key cryptography?
+1. How do you enter the AWS learner lab once you have started it?
+1. What happens to your learner lab if your credits hit $50 of $50 used?
+1. Where do you go to edit networking configuration options such as **security groups**?
+1. Where do you go to launch an instance?
+1. What is an instance?
+1. What command do you use to access an instance in AWS from your command line?
+1. What is public-key cryptography?

@@ -5,18 +5,18 @@ sidebar_position: 2
 description: Weekly Schedule for OPS345
 ---
 
+# Weekly Schedule
+
 ## Quick Links
 
 | [Weekly Schedule](./weekly-schedule.md) | [Course Outline](https://apps.senecapolytechnic.ca/ssos/findOutline.do?isLoggedIn=&subjectOrAndTitle=%5BOSL740%5D+Administration+of+Open+Source+Systems&schoolCode=0s867160) | [Lab Logbook](/files/OPS345-Logbook-Online.docx)| [Assignment 1](/Assignments/assignment1.md) | [Assignment 2](/Assignments/assignment2.md) |
 | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
 
-# Weekly Schedule
-
 ## Week 1
 
 | Topic | References | Evaluation |
 | :---------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------- |
-| Introduction to Amazon Web Services (AWS) | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vR5h0Qy2sQEsYiC-XRPia9iMcXcGtQSDJ5TkKq8Crj_6hpg2Qu6jD3RxRjbIB3nCWSkezFk5T5F2_7h/pub?start=false&loop=false&delayms=5000) | [Lab 1](Labs/lab1.md) Worth 1.75% (Due Week 8) |
+| Introduction to Amazon Web Services (AWS) | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vSrlrD8lt2yEyQI-wOYKyYmrgggakrHbRMZE9kO5p3QsaGmZ4ZoaqVO4mFBmjm6FqPpzH-h1qIU94XM/pub?start=false&loop=false&delayms=3000) | [Lab 1](Labs/lab1.md) Worth 1.75% (Due Week 8) |
 
 ## Week 2
 

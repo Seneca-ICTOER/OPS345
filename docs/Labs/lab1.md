@@ -36,7 +36,7 @@ Some important things to note on this screen:
 
 **Stop Lab**: Stops the Learner Lab environment.
 
-**Used $0 of $50**: Shows the balance used of your $50 credit. If this hits \$50 of \$50 used, your learner lab is disabled. Be careful.
+**Used \$0 of \$50**: Shows the balance used of your \$50 credit. If this hits \$50 of \$50 used, your learner lab is disabled. Be careful.
 
 **AWS with a red dot next to it**: Once your lab has started, this will turn green. You can then click on this to open the environment.
 
@@ -51,7 +51,7 @@ If you click on **Services** in the top left corner (beside the AWS logo), you w
 
 An Amazon Virtual Private Cloud (VPC) is a dedicated virtual network within AWS' public cloud. It work similar to how a traditional network does in a data center. w3schools has some [additional information](https://www.w3schools.com/aws/aws_cloudessentials_awsconnectivity.php).
 
-**Security Group** settings are located in the left side navigation under **Network & Security** > **Security Groups**. Click on **Security Groups**.
+Click on **Services** > **Compute** > **EC2**. **Security Group** settings are located in the left side navigation under **Network & Security** > **Security Groups**. Click on **Security Groups**.
 
 Your screen should look like the following:
 ![AWS Security Groups](/img/awssecuritygroups.png)
@@ -77,43 +77,53 @@ Click on Launch instance just below the Resources pane. From the Launch an insta
 
 - **Name:** first
 - **OS:** Ubuntu
-- **Amazon Machine Image(AMI):** Make sure Ubuntu Sever 24.04 is selected
+- **Amazon Machine Image (AMI):** Make sure Ubuntu Sever 24.04 is selected
 
 ## Creating SSH key pairs & using public key cryptography
 
-Under **Key pair (login)** click Create new key pair. Give it the name ops345, accept the rest of the defaults and click "Create key pair".
+Under **Key pair (login)** click Create new key pair. Give it the name ops345, accept the rest of the defaults and click "Create key pair". It will download to your default download location immediately.
 
 Important: Do not lose your key pair or you will be unable to connect to your instance using SSH.
 
-Under **Network Settings** click Select existing security group. Click the dropdown and check the default. Click Launch instance. Once it has finished completing (you should see a success message), click **Connect to instance**.
+Under **Network Settings** click **Select existing security group**. Click the dropdown and check the default. Click Launch instance. Once it has finished completing (you should see a success message), click on the **instance ID** in the **Success message**. This will take you to **Instances** in **EC2**.
+
+### Accessing Your Instance
+Click on the **Instance ID** for your **first** instance. click **Connect**.
 
 Note there are a few ways to connect to your instance from here. The easiest to use are:
 
 - EC2 Instance Connect: Allows you to connect to your instance from within your web browser.
-- SSH client: Allows you to connect to your instance using the SSH key pair.
+- SSH client: Allows you to connect to your instance using the SSH key pair (which you generated when you created the instance).
 
-You will be accessing our new Linux VM remotely using SSH, which is a command-line (CLI) only protocol.
+You can use either EC2 Instance Connect or connect using an SSH client to remotely access your new Linux VM remotely using SSH, which is a command-line (CLI) only protocol.
 
-### Requirements: An SSH Client
+#### Connecting using EC2 Instance Connect
+Make sure you are on the **EC2 Instance Connect** tab. Note the username. Scroll down to the bottom, accept the defaults and click **Connect**. You should have command line access to your instance in your web browser. If the connection fails, double check your security group configuration and make sure **ssh** (port 22) has been allowed from **0.0.0.0/0** in the inbound settings, as indicated earlier in the lab.
 
-- Windows: Use the built-in Command Prompt application.
+### Connecting via An SSH Client
+
+- Windows: Use the built-in Command Prompt or PowerShell application.
 - macOS/Linux: Use the built-in Terminal application.
 
 #### For all clients
 
-- In the Linux EC2 Instance summary page, click the Connect button.
+- In the Linux EC2 Instance details page, click the Connect button.
 - In the new Connect to instance page, click on the SSH client tab.
 - Copy the example command near the bottom of the page. (Use your example command)
 - Choose the proper OS below and continue.
 
-#### On Windows, Using Command Prompt:
+#### On Windows, Using Command Prompt or PowerShell:
 
-- Open Command Prompt.
+- Open Command Prompt or PowerShell.
 - Change directories to your default Downloads folder with the following command: cd Downloads (If you saved your .pem file elsewhere, navigate there. Or move the .pem file into Downloads.)
 - Paste the example command from the Connect to instance page, and press Enter.
 - The SSH command will ask you to confirm connecting. Type yes and press Enter.
-- If login is successful, you should see a prompt like this: ubuntu@ip-172-31-91-76:~$
-- To quit, type exit.
+- If login is successful, you should see a prompt like this:
+
+```bash
+ubuntu@ip-172-31-91-76:~$
+```
+- To quit, type **quit**, **exit** or **ctrl+d**.
 
 #### On macOS/Linux, Using Terminal:
 
@@ -122,65 +132,17 @@ You will be accessing our new Linux VM remotely using SSH, which is a command-li
 - Change the file permissions of your .pem file with this command: chmod 400 \*.pem
 - Paste the example command from the Connect to instance page, and press Enter.
 - The SSH command will ask you to confirm connecting. Type yes and press Enter.
-- If login is successful, you should see a prompt like this: ubuntu@ip-172-31-91-76:~$
-
-## Creating a dotfiles repository in GitHub
-
-A GitHub dotfiles repository is used to store and manage your configuration files (often called "dotfiles" because their filenames start with a dot, e.g., **.bashrc**, **.vimrc**, **.gitconfig**). These files are used to customize your development environment. By keeping them in a GitHub repository, you can easily share your configurations across different machines and with other developers. This practice helps in maintaining consistency in your development setup and makes it easier to set up new environments quickly. A dotfiles repo can also be used to host scripts you wish run upon the creation of any Codespace you create using your GitHub account (ie account wide).
-
-You are going to create a dotfiles repository using an existing template repository. Template repositories are used for creating new repositories from a common base. This is how the GitHub Classroom assignments you have accepted have worked. The template repository has a script in it that will add your **AWS ssh key** (.pem file) to any Codespace you create allowing you to access your instance via SSH from the terminal in Codespaces.
-
-- In your web browser, navigate to the [dotfiles template repository](https://github.com/OSL745/dotfiles) in the OSL745 organization.
-- In the top right corner, click **Use this template**
-- Make sure **owner** is set to **your GitHub user**, and provide the **repository name** as **dotfiles**. Your screen should look similar the picture below. You can set it's visibility to **private** if you wish. With a private repo, no one will even see it exists.
-  ![Creating a dotfiles repo](/img/createrepo.png)
-
-## Adding your .pem file as a GitHub secret
-
-Browse to your **dotfiles** repository.
-
-- Click on **Settings**
-- Click on **Secrets and variables**
-- Click on **Codespaces**
-- Click the Green button labelled **New repository secret**
-- Add the secret With the following
-  - name **SSH_KEY**
-  - In the Secret field, paste in the contents of your .pem file. You can use cat from your local command line (yes, even from the Windows Terminal / PowerShell) and copy/paste.
-
-Your screen should look as follows (note, in the screenshot the secret field has been left empty) New Repository Secret
-![New Repository Secret](/img/new-secret.png)
-
-- Click the green button labelled Add secret
-
-## Automatically installing your dotfiles repository for every Codespace you create
-
-In your web browser, navigate to your GitHub Profile.
-
-- Click on your GitHub profile (top right corner)
-- Click on **Settings**
-- Click on Codespaces
-
-Under **Dotfiles**:
-
-- Check the box beside **Automatically install dotfiles**
-- Browse to your **dotfiles** repository. Note, it may automatically populate.
-
-## Connecting to your AWS instance from the terminal in Codespaces
-
-You may need to rebuild the container for any existing Codespaces you own.
-Note: Keys added via your dotfiles repo will be installed over top of per-repo keys with this configuration.
-
-Launch Codespaces from any of your previous GitHub Classroom assignments (or even for your dotfiles repo). In the terminal (in the bottom) copy paste the SSH command from **EC2 Instance Connect** and remove the path to the key. Since the script wrote your private key to the default location, you do not need to specify the path to the key. It should look similar to following.
-
+- If login is successful, you should see a prompt like this:
 ```bash
-ssh ubuntu@ec2-23-20-90-70.compute-1.amazonaws.com
+ubuntu@ip-172-31-91-76:~$
 ```
+- To quit, type **quit**, **exit** or **ctrl+d**.
 
-Once you have confirmed this works, you can logout from your Codespaces terminal and shut everything down (Codespaces and the AWS Learner Lab). For proof, show your professor a successful connection to your instance (either via ec2 instance connect, SSH from Codespaces or both).
+## Lab 1 Sign-Off
 
-## Lab 1 Sign-Off (Show Instructor)
+Take a screenshot showing a successful connection to your instance. The following Exploration Questions are for furthering your knowledge only, and may appear on quizzes or tests at any time later in this course.
 
-Show your professor a successful connection to your instance. The following Exploration Questions are for furthering your knowledge only, and may appear on quizzes or tests at any time later in this course.
+When you shut off your learner lab, all resources (such as instances) are shut off. You do not need to shut down your instance. It will be automatically started again the next time you start your learner lab. **Shut down** your learner lab by navigating to the Learner Lab home page and click **End Lab**.
 
 ## Exploration Questions
 

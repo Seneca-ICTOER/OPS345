@@ -22,7 +22,7 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :----------------------------------- | :--------- | :--------------------------------------------- |
-| Amazon Web Services (AWS) Networking |            | [Lab 2](Labs/lab2.md) Worth 1.75% (Due Week 8) |
+| Amazon Web Services (AWS) Networking | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vTWuaBNISazd1LbdGZoYc_lzzzJUnl-isqwvhQKmUueXRSGBgjia4SQASPNfdx23vWMwOvMJpMvoq83/pub?start=false&loop=false&delayms=3000)           | [Lab 2](Labs/lab2.md) Worth 1.75% (Due Week 8) |
 
 ## Week 3
 

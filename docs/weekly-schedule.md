@@ -28,7 +28,7 @@ description: Weekly Schedule for OPS345
 
 | Topic  | References | Evaluation |
 | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------- |
-| Apache | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vTOqMCX5K0A4NH-UUZUP6S0BM8GehodZ6TCY4lHEgh2nphCZyfUfgzRg3gpLCiCHk6e84_sn0TiNLI5/pub?start=false&loop=false&delayms=5000) | [Lab 3](Labs/lab3.md) Worth 1.75% (Due Week 8) |
+| Apache | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vQD3Yu2fB2HcDs7wa_Ey75J7hJB1q0pp_0RH_r0UBnDVXe5dlGzq2bMsi1pTZsrLN-26cSVXt9390zw/pub?start=false&loop=false&delayms=3000) | [Lab 3](Labs/lab3.md) Worth 1.75% (Due Week 8) |
 
 ## Week 4
 

@@ -27,7 +27,7 @@ In this lab, you will create all the networking infrastructure required to host 
 
 ### Virtual Private Cloud
 
-Start your session in the Learner Lab by clicking on the **Start Lab** button. Once the red dot has turned green, click on it to enter the Learner Lab and access the AWS Console interface. You are going to create a new Virtual Private Cloud (VPC). Resources you created last week in Lab 5 will be inaccessible in this VPC. Navigate to VPC (which you may have added to your favourites last week). On the VPC dashboard, click **Create VPC**. See the following screenshot for reference.
+Start your session in the Learner Lab by clicking on the **Start Lab** button. Once the red dot has turned green, click on it to enter the Learner Lab and access the AWS Console interface. You are going to create a new Virtual Private Cloud (VPC). Resources you created last week in Lab 1 will be inaccessible in this VPC. Navigate to VPC (which you may have added to your favourites last week). On the VPC dashboard, click **Create VPC**. See the following screenshot for reference.
 
 ![Create VPC](/img/createvpc.png)
 
@@ -62,7 +62,7 @@ You are going to create 4 subnets in your VPC. Two private subnets, and two publ
 
 - Subnet Name: **Private Subnet 1**
 - Availability Zone: **us-east-1a**
-- IPv4 VPC CIDR block: **10.0.0/16**
+- IPv4 VPC CIDR block: **10.0.0.0/16**
 - IPv4 subnet CIDR block: **10.0.1.0/24**
 - Your screen should look as follows:
 
@@ -253,14 +253,16 @@ Once the instance has created, confirm you can connect to it using:
 - EC2 Instance Connect
 - From the terminal in Codespaces. (If you had to generate a new key, you will need to update the Repository secret for your Dotfiles repo containing the key)
 
-## Lab 6 Sign-Off (Show Instructor)
+## Lab 2 Sign-Off (Show Instructor)
 
-Show your professor the following:
+Take screenshots showing the following: 
 
 - 4 new subnets (Public Subnet 1, Public Subnet 2, Private Subnet 1 & Private Subnet 2)
 - Route Table
 - Internet Gateway
-- Access to **www** from EC2 Instance Connect and Codespaces
+- Access to **www** from EC2 Instance Connect or the command line
+
+The following Exploration Questions are for furthering your knowledge only, and may appear on quizzes or tests at any time later in this course.
 
 ## Exploration Questions
 
@@ -268,4 +270,3 @@ Show your professor the following:
 1. What are the steps to create a VPC?
 1. What are subnets and route tables?
 1. What is an Internet Gateway?
-1. What comparisons can you make between this lab and the virtual network you created in **Lab 3**, as well as the **nftables** configuration from **Lab 4**?

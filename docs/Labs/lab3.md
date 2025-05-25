@@ -92,9 +92,9 @@ Now you can access your www instance from anywhere by using the same IP address.
 
 Open a web browser and either copy/paste, or type out your elastic IP in the address bar (make sure the url is being requested using **http** and not **https**) to confirm you can still access your Apache test page.
 
-## Lab 7 Sign-Off (Show Instructor)
+## Lab 3 Sign-Off
 
-Show your professor the following:
+Take screenshots showing the following:
 
 - Your Elastic IP
 - Accessing your Apache2 Ubuntu Default Page through a web browser using http

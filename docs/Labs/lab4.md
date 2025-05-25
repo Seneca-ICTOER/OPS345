@@ -140,12 +140,11 @@ Update your **Wordpress Website SG** security group rules to allow incoming HTTP
 
 Open a web browser try to access your Apache test page using HTTPS. It should work!
 
-## Lab 8 Sign-Off (Show Instructor)
+## Lab 4 Sign-Off
 
-Show your professor the following:
+Take screenshots showing the following: 
 
-- Your Elastic IP
-- Accessing your Apache2 Ubuntu Default Page through a web browser using **https**
+- Accessing your Apache2 Ubuntu Default Page through a web browser using **https** and showing your fully qualified domain name (FQDN).
 
 ## Exploration Questions
 1. What port did you have to allow inbound in the **Wordpress Website SG** security group?

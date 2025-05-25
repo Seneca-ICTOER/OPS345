@@ -58,19 +58,19 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :------ | :--------- | :---------------------------------------------- |
-| Backups |            | [Lab 6](Labs/lab6.md) Worth 3% (Due Week 13) |
+| Amazon Elastic Container Service (ECS) |            | [Lab 6](Labs/lab6.md) Worth 3% (Due Week 13) |
 
 ## Week 9
 
 | Topic | References | Evaluation |
 | :--------- | :--------- | :---------------------------------------------- |
-| Containers |            | [Lab 7](Labs/lab7.md) Worth 3% (Due Week 13) |
+| Simple Storage Service (S3) Glacier |            | [Lab 7](Labs/lab7.md) Worth 3% (Due Week 13) |
 
 ## Week 10
 
 | Topic | References | Evaluation |
 | :---------------------- | :--------- | :---------------------------------------------- |
-| Container Orchestration |            | [Lab 8](Labs/lab8.md) Worth 3% (Due Week 13) |
+| Elastic Beanstalk |            | [Lab 8](Labs/lab8.md) Worth 3% (Due Week 13) |
 
 ## Week 11
 

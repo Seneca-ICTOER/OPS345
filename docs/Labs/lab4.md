@@ -17,7 +17,7 @@ This week's lab will cover the following:
 
 ## Registering a domain name
 
-You should have received an email indicating you have access to [My.Custom.Domain](https://mycustomdomain.senecapolytechnic.ca/). You will be using this to create an A record and map it to the elastic IP of your instance from Lab 7. If you do not have access please **contact your professor** so you can proceed.
+You should have received an email indicating you have access to [My.Custom.Domain](https://mycustomdomain.senecapolytechnic.ca/). You will be using this to create an A record and map it to the elastic IP of your instance from Lab 3. If you do not have access please **contact your professor** so you can proceed.
 
 ### Creating an A record
 
@@ -32,7 +32,7 @@ On the following screen, click **Create your first DNS Record!**, and fill in th
 - **Name:** www
 - **Type:** A Record (IPv4 Address)
 - **Value:** _your elastic IP_
-- **Course:** OSL745
+- **Course:** OPS345
 - **Description:** Address record for www instance.
 
 Click **Create**.
@@ -58,7 +58,7 @@ dig www.yourusername.mystudentproject.ca
 
 ![Google Admin ToolBox](/img/google-admin-toolbox.png)
 
-4. Provided all of the above displayed the correct output, open a web browser and type **www.yourusername.mystudentproject.ca** (replace your username) in the URL bar of a web browser. This could be on your PC, or any device. You should see your website from Lab 7! If you don't, double check and make sure you see **http://** and not **https://**.
+4. Provided all of the above displayed the correct output, open a web browser and type **www.yourusername.mystudentproject.ca** (replace your username) in the URL bar of a web browser. This could be on your PC, or any device. You should see your website from Lab 3! If you don't, double check and make sure you see **http://** and not **https://**.
 
 Make sure you see the correct output from the previous commands indicating your DNS is working before proceeding to the next step.
 

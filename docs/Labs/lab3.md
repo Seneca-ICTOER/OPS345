@@ -69,7 +69,7 @@ It's time to test to see if everything's working properly. Browse to your instan
 
 ![AWS Instance ID](/img/aws-instance-id.png)
 
-Click open address beside your Public IPv4 address. You should see the default Apache test page (screenshot below). If you do not, edit your url and change **https://** to **http://**. You will learn how to configure **https** in lab 8. Accessing your server through **http** will be fine until then.
+Click open address beside your Public IPv4 address. You should see the default Apache test page (screenshot below). If you do not, edit your url and change **https://** to **http://**. You will learn how to configure **https** in lab 4. Accessing your server through **http** will be fine until then.
 
 ![Apache Test Page](/img/apache-default.png)
 
@@ -86,7 +86,7 @@ Now you've reserved your Elastic IP. It is yours for as long as you want (which 
 Next, click on the **Instance** box and select the instance with **(www)** in the name (screenshot below), and click **Associate** in the bottom right corner.
 ![Associating an Elastic IP](/img/associate-elastic-ip.png)
 
-Now you can access your www instance from anywhere by using the same IP address. You should write this IP down somewhere for future use. You will be mapping a domain name to it in lab 8.
+Now you can access your www instance from anywhere by using the same IP address. You should write this IP down somewhere for future use. You will be mapping a domain name to it in lab 4.
 
 ## Accessing your Apache server from a web browser
 

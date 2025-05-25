@@ -104,3 +104,4 @@ Take screenshots showing the following:
 1. What package manager does Ubuntu use?
 1. How do you find the current status of the apache2 service?
 1. What is an Elastic IP?
+1. What is the difference between HTTP and HTTPS?

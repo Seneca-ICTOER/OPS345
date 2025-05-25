@@ -102,6 +102,8 @@ Enter the following text (again, replacing the username with yours).
 ServerName www.jasoncarman.mystudentproject.ca
 ```
 
+Save your file and exit (**ctrl + x**).
+
 ### Testing and Reloading the Apache configuration
 
 Enter the following command to test your Apache configuration.
@@ -138,7 +140,8 @@ Update your **Wordpress Website SG** security group rules to allow incoming HTTP
 
 ## Testing your configuration
 
-Open a web browser try to access your Apache test page using HTTPS. It should work!
+Open a web browser try to access your Apache test page using HTTPS. It should work! Your screen should look similar to the following.
+![Website showing FQDN and HTTPS](/img/apachehttps.png)
 
 ## Lab 4 Sign-Off
 
@@ -148,3 +151,5 @@ Take screenshots showing the following:
 
 ## Exploration Questions
 1. What port did you have to allow inbound in the **Wordpress Website SG** security group?
+1. What service (command) did you use to generate your TLS/SSL certificate?
+1. What is certbot?

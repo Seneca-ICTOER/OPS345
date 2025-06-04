@@ -34,7 +34,7 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :--------------------------------------------------- | :--------- | :--------------------------------------------- |
-| DNS / SSL | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vQfxUk6FknxwurW7M_psHJU5UwYexgICgheqUKcQpz20wSkOq5lTI1tZEM3y9pfBV-2G6C3Sw2W-blV/pub?start=false&loop=false&delayms=5000) | [Lab 4](Labs/lab4.md) Worth 3% (Due Week 8) |
+| DNS / SSL | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vT1vLYHKWjbSgQhLpNnfMuByNANCwiimDxgyMO82T9tN_xpw0kxe094AGVajYBr0gAOUY-9pF4Gwm1P/pub?start=false&loop=false&delayms=3000) | [Lab 4](Labs/lab4.md) Worth 3% (Due Week 8) |
 
 ## Week 5
 

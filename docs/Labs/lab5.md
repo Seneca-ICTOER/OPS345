@@ -14,7 +14,7 @@ This week's lab will cover the following:
 - Creating a Relational Database Service (RDS) instance
 - Connecting to your RDS
 
-In this lab, you will create a database using the Relational Database Service. You will then test connecting to it from your **www** instance. You will use this database in **lab 10** to install and deploy Wordpress using Elastic Beanstalk.
+In this lab, you will create a database using the Relational Database Service. You will then test connecting to it from your **www** instance. You will use this database in **lab 8** to install and deploy Wordpress using Elastic Beanstalk.
 
 ## Creating a RDS instance
 
@@ -96,7 +96,7 @@ quit;
 Install Wordpress using apt.
 
 ```bash
-sudo apt install wordpress
+sudo apt -y install wordpress
 ```
 
 Create a virtual host file in **/etc/apache2/sites-available/wordpress.conf** with the following contents:
@@ -140,7 +140,7 @@ define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 - Open a web browser and enter the following url: http://www.username.mystudentproject.ca/blog/wp-admin/install.php
 - You should see a Wordpress Welcome/Setup page. Follow the prompts on screen and enter the appropriate information.
   - Use the **Database Name**, **Username** and **Password** you configured above.
-  - Set the title to Your Name's Blog. For example for me it would be "Jason Carman's Blog"
+  - Set the title to Your Name's Blog. For example: "Candice Carman's Blog"
   - Set the username to your Seneca ID.
   - Set the password to your Seneca ID. You may need to check the box to **Confirm use of weak password**
   - Set the email to your Seneca email address.
@@ -154,9 +154,9 @@ Add a blog post detailing the following:
 - What was the most difficult part for you?
 - What was the easiest part for you?
 
-## Lab 9 Sign-Off (Show Instructor)
+## Lab 5 Sign-Off
 
-Show your professor the following:
+Take screenshots showing the following: 
 
 - A successful connection to the database from your www instance.
 - Your blog post
@@ -164,4 +164,3 @@ Show your professor the following:
 ## Exploration Questions
 
 1. What is an RDS?
-1. How is this lab similar to **Assignment 1**?

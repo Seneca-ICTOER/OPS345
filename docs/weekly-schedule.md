@@ -40,7 +40,7 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :-------------------------- | :--------- | :---------------------------------------------- |
-| Amazon Relational Databases |            | [Lab 5](Labs/lab5.md) Worth 3% (Due Week 13) |
+| Amazon Relational Databases | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vSDWWo1uzgGjcIyWw2IzdL0Ylz32PqYNatDIINKchY1YsrIar6rizMLlYWYmqckK6YZ2LgVmdo1UUGJ/pub?start=false&loop=false&delayms=3000) | [Lab 5](Labs/lab5.md) Worth 3% (Due Week 13) |
 
 ## Week 6
 

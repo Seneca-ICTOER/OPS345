@@ -63,9 +63,10 @@ Store the following connection information about your RDS instance in your lab l
 
 ## Connecting to your database from www
 
-Login to your **www** instance, and install the mariadb client.
+Login to your **www** instance, update the system and install the mariadb client.
 
 ```bash
+sudo apt -y update && sudo apt -y upgrade
 sudo apt install mariadb-client-core
 ```
 
@@ -99,7 +100,7 @@ Install Wordpress using apt.
 sudo apt -y install wordpress
 ```
 
-Create a virtual host file in **/etc/apache2/sites-available/wordpress.conf** with the following contents:
+Create a virtual host file (using **nano** or **vim**) in **/etc/apache2/sites-available/wordpress.conf** with the following contents:
 
 ```bash
 Alias /blog /usr/share/wordpress
@@ -125,7 +126,7 @@ sudo a2ensite wordpress
 
 - Use systemctl to restart the apache service.
 
-Edit the file **/etc/wordpress/config-www.username.mystudentproject.ca.php** where username is your Seneca username. Add the following contents (changing values where appropriate).
+Edit the file (using **vim** or **nano**) **/etc/wordpress/config-www.username.mystudentproject.ca.php** where username is your Seneca username. Add the following contents (changing values where appropriate).
 
 ```php
 <?php
@@ -137,7 +138,7 @@ define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 ?>
 ```
 
-- Open a web browser and enter the following url: http://www.username.mystudentproject.ca/blog/wp-admin/install.php
+- Open a web browser and enter the following url: https://www.username.mystudentproject.ca/blog/wp-admin/install.php
 - You should see a Wordpress Welcome/Setup page. Follow the prompts on screen and enter the appropriate information.
   - Use the **Database Name**, **Username** and **Password** you configured above.
   - Set the title to Your Name's Blog. For example: "Candice Carman's Blog"

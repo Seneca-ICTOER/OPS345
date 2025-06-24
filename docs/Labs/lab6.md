@@ -17,7 +17,29 @@ description: Configure the Elastic Container Service (ECS)
 - [Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
 - [Linux](https://docs.docker.com/desktop/setup/install/linux/)
 
-
+### Creating a web page
+- Create a local directory called **lab6**.
+- Open a text editor (like VS Code) and create the file **index.html** with the following contents. Save it in the **lab6** directory.
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Web Page</title>
+    </head>
+    <body>
+        <p>Hello World</p>
+    </body>
+</html>
+```
+- Using a text editor, create the following docker file. Save it as **Dockerfile** in the **lab6** directory.
+```bash
+FROM httpd:latest
+WORKDIR /usr/local/apache2/htdocs
+COPY . /usr/local/apache2/htdocs
+EXPOSE 80
+```
 ### Building and running your application
 ```bash
 docker build -t my-apache-app .

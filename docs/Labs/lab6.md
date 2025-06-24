@@ -11,7 +11,7 @@ description: Configure the Elastic Container Service (ECS)
 
 ## Overview
 
-## Investigation 1: Docker
+## Investigation 1: Creating a local web application Docker
 ### Install docker
 - [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
 - [Mac](https://docs.docker.com/desktop/setup/install/mac-install/)

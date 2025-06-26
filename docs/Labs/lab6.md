@@ -182,3 +182,12 @@ For our service's **Environment** we will use our **Existing cluster**, `my-apac
 1. Leave **Public IP** as **Turned on** to auto-assign a public IP to your tasks.
 
 Click **Create**. It may take several minutes to create.
+
+### Viewing your Apache web page
+1. Go to **EC2** > **Network & Security** > **Network Interfaces**
+1. You should notice a new interface with a description beginning with **arn:aws:ecs:us-east-1:**
+1. Check the box beside it
+1. Copy the **Public IPv4 address** and paste it in your web browser.
+1. You should see the default Apache web page, displaying the text **It works!**
+
+In this lab you have created a local Apache container, and a container in Amazon ECS with the default Apache image. You will be using Elastic Beanstalk to deploy a Wordpress website in Lab 8. Elastic Beanstalk uses containers, although it automates the process of creating and deploying them.

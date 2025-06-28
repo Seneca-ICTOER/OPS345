@@ -21,13 +21,13 @@ In this investigation you will install the Docker Desktop software, create a sim
 
 ### Installing the required local software
 Install the following required software:
-#### Windows Subsystem for Linux
-- [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
 
-#### Docker
+#### Docker Desktop
 - [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
 - [Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
 - [Linux](https://docs.docker.com/desktop/setup/install/linux/)
+
+> Note: Docker Desktop requires virtualization enabled in the bios to function. If you are experiencing issues with Docker Engine starting, check to ensure it is enabled.
 
 #### Visual Studio Code (VSCode)
 - [VS Code](https://code.visualstudio.com/)
@@ -77,11 +77,10 @@ docker run --name my-apache-app -d -p 80:80 -t my-apache-app
 ### Pushing your code to dockerhub
 #### Creating a dockerhub account and repository
 - Create a dockerhub account: https://hub.docker.com
-- Create a repository. Name it my-apache-app
+- Create a public repository. Name it my-apache-app
 
 #### Generating a gpg key locally
 [gpg --generate-key](https://docs.docker.com/desktop/setup/sign-in/)
-
 
 #### Generate a personal access token
 - Generate a personal access token on dockerhub - save this.
@@ -103,6 +102,12 @@ docker login -u username
   - Paste the PAT
 
 - Tag your local image
+- Windows (PowerShell):
+```powershell
+docker tag my-apache-app new-repo:my-apache-app
+```
+
+- Linux:
 ```bash
 docker tag local-image:my-apache-app new-repo:my-apache-app
 ```

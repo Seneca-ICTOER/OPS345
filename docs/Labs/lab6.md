@@ -83,8 +83,9 @@ docker run --name my-apache-app -d -p 80:80 -t my-apache-app
 [gpg --generate-key](https://docs.docker.com/desktop/setup/sign-in/)
 
 #### Generate a personal access token
-- Generate a personal access token on dockerhub - save this.
+- Generate a [personal access token](https://app.docker.com/settings/personal-access-tokens) on dockerhub. Save this somewhere locally. You will need it.
 
+> For Windows users, download and install [Gpg4win](https://gpg4win.org/download.html)
 - Generate GPG key
 ```bash
 gpg --generate-key

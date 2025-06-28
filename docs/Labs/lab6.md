@@ -10,11 +10,20 @@ description: Configure the Elastic Container Service (ECS)
 # Under Development
 
 ## Overview
+In this lab, you will learn how to build, run, and deploy a simple web application using Docker containers, and then use Amazon Elastic Container Service (ECS) to manage and orchestrate a containerized application in the cloud. 
 
+Containers are lightweight, portable units that package an application and all its dependencies together, ensuring that the application runs consistently across different computing environments. Docker is a popular platform for creating and managing containers.
+
+You will start by creating a local Docker container for a web application, then push your container image to docker hub (a container registry). Next, you will configure and deploy a web application using Amazon ECS, a fully managed service that makes it easy to run and scale containerized applications on AWS. By the end of this lab, you will understand the basics of containerization and how to leverage ECS for deploying and managing containers in a cloud environment.
 
 ## Investigation 1: Creating a local web application using Docker
+In this investigation you will install the Docker Desktop software, create a simple web page and docker file. You will then use these to deploy your container locally.
 
 ### Installing the required local software
+Install the following required software:
+#### Windows Subsystem for Linux
+- [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
+
 #### Docker
 - [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
 - [Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
@@ -23,34 +32,44 @@ description: Configure the Elastic Container Service (ECS)
 #### Visual Studio Code (VSCode)
 - [VS Code](https://code.visualstudio.com/)
 
+### Creating a Docker account
+Browse to the [Docker website](https://app.docker.com/signup?state=hKFo2SB5X0ZIQVQxTVBFY0RzLXpWQ0VwZi14dC01SWVvbUhrQqFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIFVPcVREalBsd19qSF9zSVRSMTJtZU5Ya2IwV1RYM2pto2NpZNkgRmkyQ0VleDZtMzhkS1lxdnZaWVljSms5SUN0cGc3ZzQ) and follow the steps to create an account. You can select **Personal** for type and use your personal email.
+
 ### Creating a web page
 - Create a local directory called **lab6**.
-- Open VS Code and create the file **index.html** with the following contents. Save it in the **lab6** directory.
+- Open VS Code and create the file **index.html** with the following contents (replacing **your name** with your name). Save it in the **lab6** directory.
 ```html
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Your Name">
         <title>My Web Page</title>
     </head>
     <body>
+        <h1>Your name's web page</h1>
         <p>Hello World</p>
     </body>
 </html>
 ```
-- Using a text editor, create the following docker file. Save it as **Dockerfile** in the **lab6** directory.
+
+- In the same directory create the file **Dockerfile** with the following contents. When VS Code prompts you to install the Docker extension, install it.
 ```bash
 FROM httpd:latest
 WORKDIR /usr/local/apache2/htdocs
 COPY . /usr/local/apache2/htdocs
 EXPOSE 80
 ```
+
 ### Building and running your application
+- In VS Code click on **View** > **Terminal** and issue the following commands.
+
 ```bash
 docker build -t my-apache-app .
 docker run --name my-apache-app -d -p 80:80 -t my-apache-app
 ```
+
 ### Viewing your web page
 - Open a browser and enter localhost in the URL bar
 - You should see your webpage

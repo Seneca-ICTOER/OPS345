@@ -11,15 +11,21 @@ description: Configure the Elastic Container Service (ECS)
 
 ## Overview
 
+
 ## Investigation 1: Creating a local web application using Docker
-### Install docker
+
+### Installing the required local software
+#### Docker
 - [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
 - [Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
 - [Linux](https://docs.docker.com/desktop/setup/install/linux/)
 
+#### Visual Studio Code (VSCode)
+- [VS Code](https://code.visualstudio.com/)
+
 ### Creating a web page
 - Create a local directory called **lab6**.
-- Open a text editor (like VS Code) and create the file **index.html** with the following contents. Save it in the **lab6** directory.
+- Open VS Code and create the file **index.html** with the following contents. Save it in the **lab6** directory.
 ```html
 <!DOCTYPE html>
 <html>

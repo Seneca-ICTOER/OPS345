@@ -14,7 +14,7 @@ In this lab, you will learn how to build, run, and deploy a simple web applicati
 
 Containers are lightweight, portable units that package an application and all its dependencies together, ensuring that the application runs consistently across different computing environments. Docker is a popular platform for creating and managing containers.
 
-You will start by creating a local Docker container for a web application, then push your container image to docker hub (a container registry). Next, you will configure and deploy a web application using Amazon ECS, a fully managed service that makes it easy to run and scale containerized applications on AWS. By the end of this lab, you will understand the basics of containerization and how to leverage ECS for deploying and managing containers in a cloud environment.
+You will start by creating a local Docker container for a web application. Next, you will configure and deploy a web application using Amazon ECS, a fully managed service that makes it easy to run and scale containerized applications on AWS. By the end of this lab, you will understand the basics of containerization and how to leverage ECS for deploying and managing containers in a cloud environment.
 
 ## Investigation 1: Creating a local web application using Docker
 In this investigation you will install the Docker Desktop software, create a simple web page and docker file. You will then use these to deploy your container locally.

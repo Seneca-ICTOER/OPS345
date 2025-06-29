@@ -54,7 +54,7 @@ Install the following required software:
 ```
 
 - In the same directory create the file **Dockerfile** with the following contents. When VS Code prompts you to install the Docker extension, install it.
-```bash
+```docker
 FROM httpd:latest
 WORKDIR /usr/local/apache2/htdocs
 COPY . /usr/local/apache2/htdocs

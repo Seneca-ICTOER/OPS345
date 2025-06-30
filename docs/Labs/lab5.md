@@ -162,6 +162,13 @@ Take screenshots showing the following:
 - A successful connection to the database from your www instance.
 - Your blog post
 
+Shutting down your database:
+- Naviage to **Aurora and RDS** > **Databses**.
+- Select the radio button beside **wordpress-db**
+- Click on **Actions** > **Stop temporarily**
+
+This will shutdown your database for 7 days and pause billing. You may need to repeat this.
+
 ## Exploration Questions
 
 1. What is an RDS?

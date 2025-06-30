@@ -6,9 +6,6 @@ description: Configure the Elastic Container Service (ECS)
 ---
 
 # Lab 6 - ECS
-
-# Under Development
-
 ## Overview
 In this lab, you will learn how to build, run, and deploy a simple web application using Docker containers, and then use Amazon Elastic Container Service (ECS) to manage and orchestrate a containerized application in the cloud. 
 
@@ -110,18 +107,19 @@ Next we define the container (or containers if running multiple), that will be r
 1. The default values for **Logging** are good. ECS will use the [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) service to collect our container logs into a [Log Group](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogsConcepts.html) named `/ecs/my-apache-app`. You should write this down for later, when you need to see the logs for your server.
 1. The default values for **Storage** are sufficient.
 
-Everything else should be good using the default configuration. You can now click the **Create** button.
+Everything else should be good using the default configuration. You can now click the **Create** button (at the bottom).
 
 Your `my-apache-app` Task Definition is now created, and you can inspect or edit it at any time by coming back to **Amazon Elastic Container Service** > **Task definitions** > **my-apache-app**. When you do make changes, a new version will be created (i.e., this first version is **Revision 1**, `my-apache-app:1`).
 
 ## Investigation 3: Creating a Cluster
 Next we need to create a cluster where we can run our task.
 
+1. On the left side navigate to **Clusters**
 1. Click the **Create cluster** button
-2. Give your cluster a name: `my-apache-app`
-3. Under **Infrastructure**, choose **AWS Fargate (serverless)**
-4. The default settings are good for all other options
-5. Click the **Create** button
+1. Use the default **Cluster name**.
+1. Under **Infrastructure**, choose **AWS Fargate (serverless)**
+1. The default settings are good for all other options
+1. Click the **Create** button
 
 It will take a minute or two for the cluster to be fully created. Once it is, move on to create your **Service**.
 
@@ -129,16 +127,14 @@ It will take a minute or two for the cluster to be fully created. Once it is, mo
 
 The final step is to create a **Service** within our cluster. A service is responsible for deploying, managing, and monitoring our tasks (and the containers they run).
 
-Click on the newly created `my-apache-app` cluster, then under **Services**, click the **Create** button
-
-For our service's **Environment** we will use our **Existing cluster**, `my-apache-app`. The **Compute configuration** should be set to `Launch Type` instead of the more advanced `Capacity provider strategy`. Our **Launch type** will be `FARGATE` and the **Platform version** will be `LATEST`. This will allow our service to directly launch instances via Fargate to run our tasks.
+Click on the newly created cluster, then under **Services**, click the **Create** button.
 
 #### Service Details
 
 1. For the **Task definition**, choose the **Family** we created in the previous steps, `my-apache-app`, and the only **Revision** we have, `1 (LATEST)`. Our service will use this task definition to create and manage our task for us.
 1. Next, select the default **Service name**.
 
-# Environment
+#### Environment
 1. For **Compute options** select **Launch Type**
 1. For **Launch type** select **FARGATE**
 1. For **Platform version** select **latest**
@@ -181,4 +177,4 @@ Take screenshots showing the following:
 1. How is this lab similar to **Lab 3**?
 1. Do you think containers could be used to deploy a website using WordPress, as we did in **Lab 5**?
 1. What is the difference between running a container locally with Docker and running it on AWS ECS?
-1. What are the benefits of using AWS Fargate compared to managing your own EC2 instances for containers?
+1. What are the benefits of using AWS Fargate compared to managing your own EC2 instances?

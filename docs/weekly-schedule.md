@@ -58,7 +58,7 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :------ | :--------- | :---------------------------------------------- |
-| Amazon Elastic Container Service (ECS) |            | [Lab 6](Labs/lab6.md) Worth 3% (Due Week 13) |
+| Amazon Elastic Container Service (ECS) | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vTgUP9JhMAa-ZcbneqU3F7gVLQ0fOzxF0y0AVwFjHf-iCFcqq8IfkdjHFVttSw2xfcuB5jC0XrBOEex/pub?start=false&loop=false&delayms=3000)           | [Lab 6](Labs/lab6.md) Worth 3% (Due Week 13) |
 
 ## Week 9
 

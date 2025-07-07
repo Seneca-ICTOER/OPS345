@@ -64,13 +64,13 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :--------- | :--------- | :---------------------------------------------- |
-| Simple Storage Service (S3) Glacier |            | [Lab 7](Labs/lab7.md) Worth 3% (Due Week 13) |
+| Elastic Beanstalk |            | [Lab 7](Labs/lab7.md) Worth 3% (Due Week 13) |
 
 ## Week 10
 
 | Topic | References | Evaluation |
 | :---------------------- | :--------- | :---------------------------------------------- |
-| Elastic Beanstalk |            | [Lab 8](Labs/lab8.md) Worth 3% (Due Week 13) |
+| Amazon Simple Storage Service (S3) |            | [Lab 8](Labs/lab8.md) Worth 3% (Due Week 13) |
 
 ## Week 11
 

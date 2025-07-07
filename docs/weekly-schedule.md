@@ -64,7 +64,7 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :--------- | :--------- | :---------------------------------------------- |
-| Elastic Beanstalk |            | [Lab 7](Labs/lab7.md) Worth 3% (Due Week 13) |
+| Elastic Beanstalk | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vTnGbuXtqH6B_N_QFcSpopx8Mnuyjf4qhe3bX-C54LWVK7hx8ffAoFtEjfebqEFoxht1r3CiL-Dvcs9/pub?start=false&loop=false&delayms=3000)           | [Lab 7](Labs/lab7.md) Worth 3% (Due Week 13) |
 
 ## Week 10
 

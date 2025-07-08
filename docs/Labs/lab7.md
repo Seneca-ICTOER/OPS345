@@ -144,6 +144,8 @@ Confirm the values are correct and **save** the file.
 
 ### Zip As New File and Rename - Local Computer
 
+> Warning: Make sure you **only** zip the wordpress directory, not the directory with the version number.
+
 1. Find the **wordpress** folder on your local computer.
 1. _Zip the entire wordpress directory_, not just the files inside. (Use the zip compression protocol. Don't use something else like .rar.)
 1. Rename your new zip file: **wordpress-6.7.2-_modded_.zip** (Use whatever version the source zip file has.)
@@ -273,6 +275,8 @@ Review all settings and ensure they match the instructions above. Once you hit *
 click **Submit** when ready.
 
 While you wait for the creation to complete, check your e-mail to confirm your notification subscription.
+
+If your application fails to build, double check your **wp-config.php** configuration file for syntax errors. Additionally, make sure when you rezipped the file you only select the **wordpress** folder, not the main folder.
 
 ## Investigation 4: Accessing Wordpress
 

@@ -29,7 +29,7 @@ We use **environment variables** to allow us to put all the info in the Elastic 
 
 Start your session in the Learner Lab by clicking on the **Start Lab** button. Once the red dot has turned green, click on it to enter the Learner Lab and access the AWS Console interface. You are going to create a new RDS instance.
 
-From the **Console Home** navigate to **Database** > **RDS**. See the following screenshot for reference.
+From the **Console Home** navigate to **Database** > **Aurora and RDS**. See the following screenshot for reference.
 
 ![Relational Database](/img/rds.png)
 
@@ -37,8 +37,8 @@ Click **Create database** (part way down the screen). Use the following options.
 
 1. Standard create
 1. Engine type: **MariaDB**
-1. Engine Version: **MariaDB 11.4.4** (or current latest version available)
-1. Templates: **Free tier**
+1. Engine Version: **MariaDB 11.4.5** (or current latest version available)
+1. Templates: **Sandbox**
 1. DB instance identifier: **wordpress-elasticbeanstalk**
 1. Master username: **admin**
 1. Credentials management: **Self Managed**
@@ -47,19 +47,21 @@ Click **Create database** (part way down the screen). Use the following options.
 1. Allocated storage: **5 GiB**
 1. Enable storage autoscaling: **Unchecked**
 1. Virtual private cloud (VPC): **Wordpress VPC**
-1. DB subnet group: **Create new DB Subnet Group** (if you're redoing your database creation, there will already be an entry here. Make sure you're using the _Wordpress VPC_ in the setting above!)
+1. DB subnet group: **Select the subnet group from Lab 5, it should be the auto selected one**
 1. Public access: **No**
 1. VPC security group: **Choose existing**
 1. Existing VPC security groups:
    1. **Remove default VPC**
    1. **Add _Wordpress Database SG_** (look to see that it's there below the dropdown after you select it)
 1. Availability Zone: **us-east-1a**
-1. Monitoring > Enable Enhanced monitoring: **Unchecked**
+1. Monitoring > Enable Enhanced monitoring: **Accept the default**
 1. Below the Monitoring section, Additional configuration > Initial database name: **wordpress** (Write the database name down! You will need this later.)
 1. Enable automated backups: **Unchecked**
 1. Enable encryption: **Unchecked**
 
 Click **Create database**.
+
+Close the popup window.
 
 This will take a few minutes to create. Once the database has finished creating, click on the _View connection details_ button by the green success message at the top of the page. This gives you your database password.
 
@@ -107,7 +109,7 @@ quit;
 
 1. In the local _wordpress_ folder, find a file called: **wp-config-sample.php**
 1. Duplicate this file, and call it: **wp-config.php**
-1. Open **wp-config.php** in a text editor. You will want something that supports syntax highlighting., such as the default (graphical) text editor in Ubuntu, or something fancier like Visual Studio Code.
+1. Open **wp-config.php** in a text editor. You will want something that supports syntax highlighting, such as Visual Studio Code.
 
 #### Adding Database Connector Info as Environment Variables
 
@@ -138,7 +140,7 @@ Find the following lines and add the bolded values:
 ![Image: Adding database connector information to wp-config.php.](/img/a2_wp-config-example.png)
 _Figure 1: Adding database connector information to wp-config.php._
 
-**Save** the file.
+Confirm the values are correct and **save** the file.
 
 ### Zip As New File and Rename - Local Computer
 
@@ -158,15 +160,22 @@ Click **Create application**, and use the following settings:
 
 Select: **Web server environment**
 
-### Main settings
+### Application information
 
 1. Application name: **wordpress**
+
+### Environment information
 1. Environment name: **Wordpress-env**
+
+## Platform
+1. Ensure **Managed platform** checked
 1. Platform: **PHP**
 1. Platform branch: **PHP 8.4** (or current latest)
 1. Application code: **Upload your code**
 1. Version label: **wordpress-6.7.2** (Use the version from your zip filename)
 1. Local file: **wordpress-6.7.2-_modded_.zip** (From your local computer)
+
+## Presets
 1. Presets: **Single instance (free tier eligible)**
 
 Click next
@@ -177,7 +186,7 @@ Select: Use an existing service role
 
 1. Service role: **LabRole**
 1. EC2 key pair: **vockey**
-1. IAM instance profile: **LabInstanceProfile**
+1. EC2 instance profile: **LabInstanceProfile**
 
 Click next
 
@@ -187,10 +196,9 @@ Click next
 
 #### Instance Settings
 
-1. Public IP address: **Checked**
+1. Public IP address Activated: **Checked**
 1. **Instance** subnets: **Public Subnet 1, Public Subnet 2** (both checked)
 
-Click next
 
 #### Database settings
 
@@ -258,7 +266,7 @@ Click next.
 
 #### Review options
 
-Review all settings and ensure they match the instructions above. Once you hit **Submit**, the application will take several minutes to create.
+Review all settings and ensure they match the instructions above. Once you hit **Create**, the application will take several minutes to create.
 
 ### Create the application.
 
@@ -296,6 +304,13 @@ Add a blog post detailing the following:
 Take screenshots showing the following:
 
 - Your blog post.
+
+Shutting down your database:
+- Naviage to **Aurora and RDS** > **Databses**.
+- Select the radio button beside **wordpress-db**
+- Click on **Actions** > **Stop temporarily**
+
+This will shutdown your database for 7 days and pause billing. You may need to repeat this.
 
 ## Exploration Questions
 

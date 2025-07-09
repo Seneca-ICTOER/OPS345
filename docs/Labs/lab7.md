@@ -7,8 +7,6 @@ description: Backing up files using Simple Storage Service (S3) Buckets
 
 # Lab 7 - Simple Storage Service (S3) Glacier
 
-# Under Development
-
 ## Overview
 This week's lab will cover the following:
 

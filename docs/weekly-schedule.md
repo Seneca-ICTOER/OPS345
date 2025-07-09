@@ -64,7 +64,7 @@ description: Weekly Schedule for OPS345
 
 | Topic | References | Evaluation |
 | :--------- | :--------- | :---------------------------------------------- |
-|            Amazon Simple Storage Service (S3) | | [Lab 7](Labs/lab7.md) Worth 3% (Due Week 13) |
+|            Amazon Simple Storage Service (S3) | [Lecture Slides](https://docs.google.com/presentation/d/e/2PACX-1vR-EeCnA1l1c2bqXW_NPNChnaMHx4p-1aTckfvA08ZzoBr7ezW9r_vA_WkZNBbR52WZrJTj0T3gjJa_/pub?start=false&loop=false&delayms=3000) | [Lab 7](Labs/lab7.md) Worth 3% (Due Week 13) |
 
 ## Week 10
 

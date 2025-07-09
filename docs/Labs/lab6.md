@@ -8,6 +8,7 @@ description: Configure the Elastic Container Service (ECS)
 # Lab 6 - ECS
 ## Overview
 This week's lab will cover the following:
+
 - Building, running and deploying a simple web application using Docker containers locally
 - Using Amazon Elastic Container Service (ECS) to manage a containerized application in the cloud.
 

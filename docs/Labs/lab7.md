@@ -14,8 +14,6 @@ This week's lab will cover the following:
 - Creating a public Simple Storage Service (S3) bucket
 - Uploading files to a Simple Storage Service (S3) bucket
 
-Before you begin, you should login to your **AWS Learner Lab** and start your **wordpress-elsaticbeanstalk** database.
-
 ## Investigation 1: Wordpress Source Code Modification
 
 ### Download and Unzip - Local Computer

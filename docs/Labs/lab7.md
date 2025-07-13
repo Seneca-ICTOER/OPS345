@@ -7,16 +7,12 @@ description: Backing up files using Simple Storage Service (S3) Buckets
 
 # Lab 7 - Simple Storage Service (S3) Glacier
 
-# Under Development
-
 ## Overview
 This week's lab will cover the following:
 
 - Modifying the wordpress source code in preparation for **Lab 8**
 - Creating a public Simple Storage Service (S3) bucket
 - Uploading files to a Simple Storage Service (S3) bucket
-
-Before you begin, you should login to your **AWS Learner Lab** and start your **wordpress-elsaticbeanstalk** database.
 
 ## Investigation 1: Wordpress Source Code Modification
 

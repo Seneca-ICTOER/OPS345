@@ -52,7 +52,16 @@ Navigate to [Elastic Beanstalk Console](https://console.aws.amazon.com/elasticbe
 
 To save the changes choose **Apply** at the bottom of the page. It will take a few minutes for **Elastic Beanstalk** to update the environment.
 
-Navigate to your Wordpress main page by clicking on the link provided in the Elastic Beanstalk **Environment Overview**. 
+Navigate to your Wordpress main page by clicking on the link provided in the Elastic Beanstalk **Environment Overview**.
+
+Login to [My.Custom.Domain](https://mycustomdomain.senecapolytechnic.ca/). Repeat the steps from lab 4 to add a record, with the following information:
+- Name: **a2**
+- Type: **CNAME Record**
+- Value: **Your elastic beanstalk application URL** ie **wordpress-env.eba-pehkxxfr.us-east-1.elasticbeanstalk.com**
+- Course: **OPS345**
+- Description: **CNAME record for Elastic Beanstalk Wordpress Application**
+
+Try navigating to **a2.username.mystudentproject.ca** where **username** is your username. You should see your wordpress site. You may need to wait a few minutes for the CNAME record to propagate. You can use the [Google Admin ToolBox](https://toolbox.googleapps.com/apps/dig/#A/) to verify it is working.
 
 ### Blog Posts:
 
@@ -68,6 +77,7 @@ Add a second blog post detailing the following:
 - What was the most difficult part for you?
 - What was the easiest part for you?
 - How did you find this course?
+- What would you change about this course?
 
 ## Submission
 Submit screenshots showing:

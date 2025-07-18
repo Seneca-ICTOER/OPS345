@@ -29,7 +29,7 @@ AWS auto scaling requires some configuration options, such as:
 Navigate to [Elastic Beanstalk Console](https://console.aws.amazon.com/elasticbeanstalk) and click on your Environment (**Wordpress-env**).
 
 1. In the navigation pane (left side), choose Configuration.
-1. Scroll down to **Instance traffic and scaling**S, and click **Edit**.
+1. Scroll down to **Instance traffic and scaling**, and click **Edit**.
 1. Under **Capacity** > **Auto Scaling Group** select **Load balanced** from the **Environment type** dropdown.
 1. Under **Instances** set the following:
     - Min: **1**

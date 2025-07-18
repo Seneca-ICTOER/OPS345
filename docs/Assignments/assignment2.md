@@ -2,7 +2,7 @@
 id: assignment2
 title: Assignment 2
 sidebar_position: 2
-description: OSL745 Assignment 2
+description: OPS345 Assignment 2
 ---
 
 # Assignment 2: Elastic Load Balancing and Auto Scaling
@@ -10,7 +10,7 @@ description: OSL745 Assignment 2
 
 ## Objectives of Assignment 2
 
-In this assignment, you will create a highly available environment for your Wordpress application using Elastic Load Balancing and Auto Scaling. This will build on the Wordpress deployment using _Elastic Beanstalk_ from Lab 10.
+In this assignment, you will create a highly available environment for your Wordpress application using Elastic Load Balancing and Auto Scaling. This will build on the Wordpress deployment using _Elastic Beanstalk_ from Lab 8.
 
 In this investigation you are going to configure **Auto Scaling** and **Elastic Load Balancing** for your **Elastic Beanstalk** instance. These services allow you to take an application you have built and turn it into a high capacity available application: meaning users will not see any degradation in performance regardless of how many users are connected. In the case of your **Wordpress** site, you will not have a high number of users trying to access it at any given time. However, the concepts of auto scaling and load balancing are part of what has lead to the popularity of the cloud. Load balancing can also be done (on premises) using things like a **hardware load balancer** or by installing and configuring a service such as **HA Proxy** (on a unique server).
 

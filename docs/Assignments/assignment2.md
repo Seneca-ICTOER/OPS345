@@ -54,7 +54,7 @@ To save the changes choose **Apply** at the bottom of the page. It will take a f
 
 Navigate to your Wordpress main page by clicking on the link provided in the Elastic Beanstalk **Environment Overview**. 
 
-### Blog Post:
+### Blog Posts:
 
 Add a blog post detailing the following. You may need to do a little light research.
 

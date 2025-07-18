@@ -82,4 +82,15 @@ Add a second blog post detailing the following:
 ## Submission
 Submit screenshots showing:
 - The two instances created via Auto Scaling in EC2 (navigate to **EC2** > **Instances**)
-- Your blog posts.
+- Your blog posts
+- Your CNAME record
+
+## Rubric
+
+| Task                                          | Mark   |
+| :-------------------------------------------- | :----- |
+| Two instances in EC2                          | 8      |
+| Wordpress showing domain name                 | 6      |
+| First Blog Post                               | 3      |
+| Second Blog Post                              | 3      |
+| **Total**                                     | **20** |

@@ -41,7 +41,7 @@ AWS auto scaling requires some configuration options, such as:
 Navigate to [Elastic Beanstalk Console](https://console.aws.amazon.com/elasticbeanstalk) and click on your Environment (**Wordpress-env**).
 
 1. In the navigation pane (left side), choose Configuration.
-1. Scroll down to **Instance traffic and scaling***, and click **Edit**.
+1. Scroll down to **Instance traffic and scaling**S, and click **Edit**.
 1. Under **Capacity** > **Auto Scaling Group** select **Load balanced** from the **Environment type** dropdown.
 1. Under **Instances** set the following:
     - Min: **1**
@@ -56,10 +56,13 @@ Navigate to [Elastic Beanstalk Console](https://console.aws.amazon.com/elasticbe
     - Lower threshold: **1**
     - Scale down increment: **-1**
 1. Under **Load balancer subnets**, make sure **ONLY** the following are checked:
-    - **us-east-1a**
-    - **us-east-1b**
 
-To save the changes choose Apply at the bottom of the page. It will take a few minutes for **Elastic Beanstalk** to update the environment.
+| Availability Zone | Name |
+| :--------- | :--------- | 
+| **us-east-1a** | **Public Subnet 1** |
+| **us-east-1b** | **Public Subnet 2** |
+
+To save the changes choose **Apply** at the bottom of the page. It will take a few minutes for **Elastic Beanstalk** to update the environment.
 
 
 # Instance Auto Scaling

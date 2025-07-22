@@ -29,8 +29,8 @@ Navigate to [Elastic Beanstalk Console](https://console.aws.amazon.com/elasticbe
 1. Scroll down to **Instance traffic and scaling**, and click **Edit**.
 1. Under **Capacity** > **Auto Scaling Group** select **Load balanced** from the **Environment type** dropdown.
 1. Under **Instances** set the following:
-    - Min: **1**
-    - Max: **2**
+    - Min: **2**
+    - Max: **3**
 1. In the Scaling triggers section, configure the following settings:
     - Metric: **RequestCount**
     - Unit: **Count**

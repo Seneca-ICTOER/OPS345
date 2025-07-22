@@ -17,7 +17,6 @@ This week's lab will cover the following:
 - Exploring Amazon Elastic Cloud Compute (EC2).
 - Adding an instance in AWS.
 - Creating SSH key pairs &amp; paired key encryption.
-- Creating a Dotfiles repository in GitHub.
 
 ## Investigating the AWS Learner Lab
 

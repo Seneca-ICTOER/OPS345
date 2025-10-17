@@ -162,7 +162,7 @@ Take screenshots showing the following:
 - Your blog post
 
 Shutting down your database:
-- Navigate to **Aurora and RDS** > **Databses**.
+- Navigate to **Aurora and RDS** > **Databases**.
 - Select the radio button beside **wordpress-db**
 - Click on **Actions** > **Stop temporarily**
 

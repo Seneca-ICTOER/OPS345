@@ -140,7 +140,6 @@ define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 
 - Open a web browser and enter the following url: https://www.username.mystudentproject.ca/blog/wp-admin/install.php
 - You should see a Wordpress Welcome/Setup page. Follow the prompts on screen and enter the appropriate information.
-  - Use the **Database Name**, **Username** and **Password** you configured above.
   - Set the title to Your Name's Blog. For example: "Candice Carman's Blog"
   - Set the username to your Seneca ID.
   - Set the password to your Seneca ID. You may need to check the box to **Confirm use of weak password**

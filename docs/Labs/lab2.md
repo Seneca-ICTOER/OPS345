@@ -241,7 +241,7 @@ Create a new instance in AWS (like you did in [Lab 1](lab1.md)), with the follow
 1. **Name:** www
 1. **OS:** Ubuntu
 1. **Amazon Machine Image (AMI):** Make sure Ubuntu Server 24.04 is selected
-1. Use your existing key pair (from Lab 5). If you lost your key, then generate a new one. Don't lose this one.
+1. Use your existing key pair (from Lab 1). If you lost your key, then generate a new one. Don't lose this one.
 1. **Network Settings:** Click **edit**
   - **VPC:** Select the **Wordpress VPC** you created.
   - **Security Group**: Select the **Wordpress Website Security Group** you created.

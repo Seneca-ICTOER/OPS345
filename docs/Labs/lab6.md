@@ -62,7 +62,7 @@ EXPOSE 80
 ```
 
 ### Building and running your application
-- In VS Code click on **View** > **Terminal** and issue the following commands.
+- In VS Code click on **View** > **Terminal**. Ensure you are in the "lab6" directory you created earlier and issue the following commands.
 
 ```bash
 docker build -t my-apache-app .

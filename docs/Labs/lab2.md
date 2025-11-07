@@ -251,7 +251,7 @@ Verify your settings are correct and click **Launch Instance**.
 
 Once the instance has created, confirm you can connect to it using:
 - EC2 Instance Connect
-- From the terminal in Codespaces. (If you had to generate a new key, you will need to update the Repository secret for your Dotfiles repo containing the key)
+- Via SSH
 
 ## Lab 2 Sign-Off
 

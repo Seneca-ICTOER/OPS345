@@ -73,7 +73,6 @@ Add a second blog post detailing the following:
 - What did you think of this assignment?
 - What was the most difficult part for you?
 - What was the easiest part for you?
-- How did you find this course?
 - What would you change about this course?
 
 ## Submission

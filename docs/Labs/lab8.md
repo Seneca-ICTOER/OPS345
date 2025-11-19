@@ -247,7 +247,6 @@ Add a blog post detailing the following:
 - What did you think of this lab?
 - What was the most difficult part for you?
 - What was the easiest part for you?
-- How did you find this course?
 
 ## Lab 8 Sign-Off (Show Instructor)
 

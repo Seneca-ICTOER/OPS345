@@ -41,5 +41,5 @@ Most of the learning in this course occurs through the hands-on problem solving 
 | Labs            | 16%       |
 | Assignment (2)  | 30%       |
 | Quizzes         | 4%       |
-| Midterm Exam    | 25%       |
-| Final Exam      | 25%       |
+| Midterm Test    | 25%       |
+| Final Test      | 25%       |

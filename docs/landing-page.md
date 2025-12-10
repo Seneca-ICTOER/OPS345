@@ -38,8 +38,8 @@ Most of the learning in this course occurs through the hands-on problem solving 
 
 | **Evaluation**  | **Marks** |
 | --------------- | --------- |
-| Labs & Quizzes  | 20%       |
-| Assignment (2)  | 15%       |
-| Practical Test  | 20%       |
-| Midterm Exam    | 20%       |
+| Labs            | 16%       |
+| Assignment (2)  | 30%       |
+| Quizzes         | 4%       |
+| Midterm Exam    | 25%       |
 | Final Exam      | 25%       |

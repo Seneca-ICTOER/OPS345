@@ -19,13 +19,15 @@ This course teaches the maintenance and administration of Linux servers in both 
 
 - OPS145 taught you to be a Linux user. 
 - OPS245 taught you to be a Linux system administrator.
-- OPS345 will teach you to administer and use cloud-based services for DNS, Web server and databases.
+- OPS345 will teach you to administer and use cloud-based services for DNS, Web server, databases, containers, and other AWS tools.
 
-In this course you will use AWS via the AWS learner lab. The AWS Learner Lab provides a sandbox environment where you can build, configure and deploy AWS assets such as instances. There are some limitations as to what you can do, however it provides all the functionality we require for this course. You are limited to $50 credit at no cost within the learner lab. Once this runs out, your account will be disabled. Additionally, there is no way to add funds to this pool. If you follow the lab instructions properly you should not have any issues.
+In this course you will use AWS via the AWS learner lab. The AWS Learner Lab provides a sandbox environment where you can build, configure and deploy AWS assets such as instances. There are some limitations as to what you can do, however it provides all the functionality we require for this course. 
+
+**You are limited to $50 credit at no cost within the learner lab. Once this runs out, your account will be disabled. Additionally, there is no way to add funds to this pool. If you follow the lab instructions properly you should not have any issues.**
 
 ## Learning by Doing
 
-Most of the learning in this course occurs through the hands-on problem solving that takes place in the ten labs and two assignments.
+Most of the learning in this course occurs through the hands-on problem solving that takes place in the eight labs and two assignments.
 
 ## Required Materials
 

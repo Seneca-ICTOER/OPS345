@@ -32,9 +32,18 @@ Most of the learning in this course occurs through the hands-on problem solving 
 ## Required Materials
 
 1. **USB Flash Drive** (3.0 preferred) **Minimum Capacity:** 16 GB
-1. [Lab Logbook](/files/OPS345-Logbook-Online.docx) (download & print Both sides per lab permitted)
+2. [Lab Logbook](/files/OPS345-Logbook-Online.docx) (download & print Both sides per lab permitted)
 
 - **NOTE: If you've taken this class in a previous semester, you MAY NOT bring that version of the lab logbook to any testing.**
+
+It is strongly recommended that you run this course in a Linux environment such as Mint or Ubuntu. While the majority of the class can be done in a web browser or through a MS Windows terminal, the experience will be most seamless when done in a Linux machine. Lab 6 will include a section that will have problems if you are not running a Linux machine.
+
+There are a few options for you to consider. You can:
+- Install your own flavour of Linux to your own personal laptop
+- Use your Debian 13 install from second semester (or create a new install the same way you did in OPS245 with an external hard drive)
+- Install a virtual machine either in your own Windows environment on your own laptop
+
+If you are unsure, just ask your teacher!
 
 ## Evaluation
 

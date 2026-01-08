@@ -29,12 +29,7 @@ In this course you will use AWS via the AWS learner lab. The AWS Learner Lab pro
 
 Most of the learning in this course occurs through the hands-on problem solving that takes place in the eight labs and two assignments.
 
-## Required Materials
-
-1. **USB Flash Drive** (3.0 preferred) **Minimum Capacity:** 16 GB
-2. [Lab Logbook](/files/OPS345-Logbook-Online.docx) (download & print Both sides per lab permitted)
-
-- **NOTE: If you've taken this class in a previous semester, you MAY NOT bring that version of the lab logbook to any testing.**
+## How to run this course
 
 It is strongly recommended that you run this course in a Linux environment such as Mint or Ubuntu. While the majority of the class can be done in a web browser or through a MS Windows terminal, the experience will be most seamless when done in a Linux machine. Lab 6 will include a section that will have problems if you are not running a Linux machine.
 

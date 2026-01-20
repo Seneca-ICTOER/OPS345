@@ -152,7 +152,7 @@ You are going to create **Route tables** in your **VPC** to allow traffic from w
 ![VPC Route Tables](/img/vpc-route-tables.png)
 
 2. Click on your **Route table ID**.
-   Find your default route table for your Wordpress VPC and add the name: **VPC-local Route Table**
+   Find your default route table and add the name: **VPC-local Route Table**
 
 3. Go back to the main **Route Tables** screen.
 4. Click **Create route table** (top right corner).

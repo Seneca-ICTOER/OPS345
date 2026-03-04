@@ -35,7 +35,7 @@ Click **Create database** (part way down the screen). Use the following options.
 1. Credentials management: **Self Managed**
 1. Auto generate a password: **Checked**
 1. DB instance class: **db.t3.micro**
-1. Allocated storage: **5 GiB**
+1. Allocated storage: **20 GiB**
 1. Enable storage autoscaling: **Unchecked**
 1. Virtual private cloud (VPC): **Wordpress VPC**
 1. DB subnet group: **Create new DB Subnet Group** (if you're redoing your database creation, there will already be an entry here. Make sure you're using the _Wordpress VPC_ in the setting above!)

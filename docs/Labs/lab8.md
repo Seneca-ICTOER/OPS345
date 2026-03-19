@@ -54,7 +54,7 @@ Click **Create database** (part way down the screen). Use the following options.
    1. **Remove default VPC**
    1. **Add _Wordpress Database SG_** (look to see that it's there below the dropdown after you select it)
 1. Availability Zone: **us-east-1a**
-1. Monitoring > Enable Enhanced monitoring: **Accept the default**
+1. Monitoring > Enable Enhanced monitoring: **Accept the default, should be turned off**
 1. Below the Monitoring section, Additional configuration > Initial database name: **wordpress** (Write the database name down! You will need this later.)
 1. Enable automated backups: **Unchecked**
 1. Enable encryption: **Unchecked**

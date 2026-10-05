@@ -219,7 +219,7 @@ echo "---------------------------------------"
 echo " Simple Ping Tool (inside a container) " 
 echo "---------------------------------------" 
 
-read –p "Enter IP or FQDN to ping: " TARGET 
+read -p "Enter IP or FQDN to ping: " TARGET 
 
 # test to see if variable is empty 
 

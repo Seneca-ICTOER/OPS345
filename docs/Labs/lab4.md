@@ -111,8 +111,8 @@ This time, the output should start with the “Hello from Docker!” message. Do
 
 Now try running the following two commands (they effectively do the same thing): 
 ```bash
-sudo docker ps –a 
-sudo docker container ls –a 
+sudo docker ps -a 
+sudo docker container ls -a 
 ```
 These commands list all the containers that exist on your system. The “-a” options ensures that containers that are not currently running are shown. If you run these commands without the “-a” right now, nothing will appear because no containers are currently running.  
 
@@ -124,7 +124,7 @@ sudo docker run hello-world
 ```
 And now run: 
 ```bash
-sudo docker ps –a 
+sudo docker ps -a 
 ```
 There should now be 3 “hello-world” entries, each with their own container ID and name. 
 
@@ -170,7 +170,7 @@ sudo docker stop mybusyboxloop
 ```
 The command may take a moment to process. Once it does, run: 
 ```bash
-sudo docker ps –a 
+sudo docker ps -a 
 ```
 Notice the status of the “mybusyboxloop” container has changed from “Up” to “Exited”. 
 
@@ -266,13 +266,13 @@ Save your file.
 
 Now make sure you are in the “Pingtest” directory and run the following: 
 ```bash
-sudo docker build –t ping-test . 
+sudo docker build -t ping-test . 
 ```
 This will build your docker image using the instructions in the docker file you just created.   
 
 Now run the image: 
 ```bash
-sudo docker run --name ping-test --rm –it ping-test 
+sudo docker run --name ping-test --rm -it ping-test 
 ```
 (be careful with the command above, make sure you are using the correct amount of dashes) 
 
@@ -294,11 +294,11 @@ So because of the “--rm’ flag, our container is automatically deleted once i
 
 Run the command one more time without the “--rm” flag: 
 ```bash
-sudo docker run --name ping-test –it ping-test 
+sudo docker run --name ping-test -it ping-test 
 ```
 The container should run as expected. Now check your list of containers in the other terminal window: 
 ```bash
-sudo docker ps –a 
+sudo docker ps -a 
 ```
 Without the “--rm” flag, the container is still there. Try running the image again, without specifying a name or the “-it” flag: 
 ```bash
@@ -310,7 +310,7 @@ sudo docker run -it ping-test
 ```
 The container should run correctly now but take a look at your containers list: 
 ```bash
-sudo docker ps –a 
+sudo docker ps -a 
 ```
 Notice that our “ping-test” image has been used 3 times in 3 different containers. We have our “ping-test” container but we also have 2 randomly named containers because we didn’t specify names for them. This is because we used “docker run” and not “docker start”. We were creating new containers each time instead of starting a pre-existing one.  
 
@@ -371,7 +371,7 @@ What happened? Why did we not get asked to input an IP or FQDN for our container
 
 Our container started successfully. You can see this when you look at the running containers: 
 ```bash
-sudo docker ps –a 
+sudo docker ps -a 
 ```
 You will see that the ping-test container is “Up”. It will remain “Up” forever because it is awaiting input and we have no way of providing that. We need a flag in our “docker start” command to allow that. 
 
@@ -436,7 +436,7 @@ Note that we are providing a few new options here:
 
 Now check to see that your container is running with: 
 ```bash
-sudo docker ps –a 
+sudo docker ps -a 
 ```
 It should be “Up”. 
 
@@ -472,7 +472,7 @@ First, let’s pull a pre-existing container and see how it runs on our mint-cli
 
 On your mint-client run: 
 ```bash
-sudo docker run –d --name pong –p 8080:80 danielou1/ping-pong-game:latest 
+sudo docker run -d --name pong -p 8080:80 danielou1/ping-pong-game:latest 
 ```
 Then, open your web browser and put the following into the address bar: 
 
@@ -482,19 +482,19 @@ You should be able to play a little pong. I dare all of you to score even a sing
 
 Now, let’s try that on our win-client.  Log into your win-client and open Docker Desktop. Wait for the application and the Docker Engine to start up. Once it is running, open Powershell as an Administrator and input the following command to make sure Docker is running correctly: 
 ```bash
-docker ps –a 
+docker ps -a 
 ```
 You won’t get any containers as you haven’t started any yet but you should get the same column headers you got when running this command on mint-client (CONTAINER ID, IMAGE, COMMAND etc.) 
 
 Now try running the same command we just ran on mint-client: 
 ```bash
-docker run –d --name pong –p 8080:80 danielou1/ping-pong-game:latest 
+docker run -d --name pong –p 8080:80 danielou1/ping-pong-game:latest 
 ```
 The command will probably take a bit longer to process than it did on mint-client so be patient. Once it finishes, open your web browser and try accessing the game just like you did on mint-client. Again, try not to get too distracted by the absolute intensity that is Pong. 
 
 We can run the same commands in Powershell that we did in mint-client to check the status of our containers: 
 ```bash
-docker ps –a 
+docker ps -a 
 ```
 But before we stop our pong container, let’s quickly take a look at the Docker Desktop application.  
 

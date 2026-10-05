@@ -400,7 +400,16 @@ At this point your VMs should be connected as follows:
 
 Boot up all 4 VMs and try to ping google.com from their command lines. Only your deb-router-1 should be successful. If any other VM can ping google, go back and double check your configuration and the steps you used to get here. 
 
+## Backing Up our VMs
+It is a good idea to back up your VMs at this point and when you have successfully completed each of the first 4 labs. You can do this two ways:
+- You can use the gzip method that you used in [Lab 2](https://seneca-ictoer.github.io/OPS245/A-Labs/lab2) of OPS245
+- You can create Virtual Machine clones by right-clicking on each VM and clicking "Clone".
 
+There are pros and cons to both methods. Using gzip will use less space on your hard drive so if you have a small hard drive (ex 256GB) you will want to use that method. 
+
+If you have a hard drive that is 500GB or larger, you will have enough space to clone your VMs. Just be sure to delete the old clone when creating a new one. You don't want to mix them up or have them come into conflict with one another. 
+
+If you are unsure, ask your teacher.
 
 ## Lab 1 Sign-Off
 

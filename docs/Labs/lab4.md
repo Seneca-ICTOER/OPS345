@@ -333,7 +333,7 @@ sudo docker rm ping-test
 ```
 Confirm the container was removed: 
 ```bash
-sudo docker ps –a 
+sudo docker ps -a 
 ```
 Now delete the ping-test image: 
 ```bash
@@ -345,7 +345,7 @@ sudo docker image ls -a
 ```
 Now that it is gone, let’s rebuild that image. Make sure you are in the Pingtest directory and run: 
 ```bash
-sudo docker build –t ping-test . 
+sudo docker build -t ping-test . 
 ```
 Confirm the image was rebuilt: 
 ```bash
@@ -488,7 +488,7 @@ You won’t get any containers as you haven’t started any yet but you should g
 
 Now try running the same command we just ran on mint-client: 
 ```bash
-docker run -d --name pong –p 8080:80 danielou1/ping-pong-game:latest 
+docker run -d --name pong -p 8080:80 danielou1/ping-pong-game:latest 
 ```
 The command will probably take a bit longer to process than it did on mint-client so be patient. Once it finishes, open your web browser and try accessing the game just like you did on mint-client. Again, try not to get too distracted by the absolute intensity that is Pong. 
 
@@ -637,7 +637,7 @@ Save your file.
 
 Enter your “Clickit” directory and run the following command:
 ```bash
-sudo docker build –t clickit-game . 
+sudo docker build -t clickit-game . 
 ```
 
 Confirm your “clickit” image has been built: 
@@ -646,7 +646,7 @@ sudo docker image ls
 ```
 And then run your new image: 
 ```bash
-sudo docker run –d --name clickit-game  –p 8080:80 clickit-game 
+sudo docker run -d --name clickit-game  -p 8080:80 clickit-game 
 ```
 You should be met with an error saying a container network driver failed to set up. This is because our old pong container is still running and using the port we want to use. We will have to stop the pong container before we can properly set up a container for our clickit game. 
 
@@ -660,7 +660,7 @@ sudo docker rm clickit-game
 ```
 Now try running the clickit image one more time: 
 ```bash
-sudo docker run –d --name clickit-game  –p 8080:80 clickit-game 
+sudo docker run -d --name clickit-game  -p 8080:80 clickit-game 
 ```
 Go back into your web browser and put the following into the address bar: 
 
@@ -670,7 +670,7 @@ When you hit enter, you may see the old pong game load up again because it is st
 
 Close your browser and go back to your terminal and list your containers with: 
 ```bash
-sudo docker ps –a 
+sudo docker ps -a 
 ```
 You should see that your clickit container is still running. Stop it: 
 ```bash
@@ -682,7 +682,7 @@ Start up your win-client VM if it isn’t already on and start up Docker Desktop
 
 On your mint-client VM, navigate to your “sambadir” directory and run: 
 ```bash
-sudo docker save –o clickit-game.tar clickit-game 
+sudo docker save -o clickit-game.tar clickit-game 
 ```
 Check to make sure that the “clickit-game.tar” file is now located in your “sambadir” directory. 
 
@@ -694,7 +694,7 @@ Switch over to your win-client VM. In win-client, create a directory called “C
 
 Run Powershell as an administrator and navigate to your “Clickit” directory. Then run: 
 ```bash
-docker load –i .\clickit-game.tar 
+docker load -i .\clickit-game.tar 
 ```
 You should receive a “Loaded image” message. Now run: 
 ```bash
@@ -704,7 +704,7 @@ Your clickit-game image should now appear, letting you know the image is now sto
 
 Finally, run the image: 
 ```bash
-docker run –d --name clickit-game –p 8080:80 clickit-game 
+docker run -d --name clickit-game -p 8080:80 clickit-game 
 ```
 Open your web browser and go to http://localhost:8080 and you should be able to play Clickit on your win-client. (Again, if you see Pong when you first go to the website, refresh it and Clickit should appear). 
 

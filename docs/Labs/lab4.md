@@ -512,11 +512,11 @@ Confirm in both Powershell and Docker Dekstop that the pong container has “Exi
 
 The last thing we are going to do is create a brand new container and manually move it over to another system. 
 
-On your mint-client VM, navigate to your “Containers” directory and create a new directory called “Clickit”. Enter into the new directory and create an empty file: 
+On your mint-client VM, navigate to your “Containers” directory and create a new directory called “Clickit”. Enter into the new directory and create an empty Dockerfile: 
 ```bash
 touch Dockerfile 
 ```
-Create a new directory inside your “Clickit” directory called “game” and inside of that directory create an empty file: 
+Create another empty file called "index.html": 
 ```bash
 touch index.html 
 ```

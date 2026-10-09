@@ -40,6 +40,12 @@ The second half of the class will take place primarily in the AWS learning lab c
 
 **Do not try to complete any of this course in MS Windows. It will cause you unnecessary headaches.**
 
+## Submitting Labs
+
+All the labs in this course will be submitted via a submission link in Blackboard. You will be submitting a document that contains screenshots showing proof of items you have completed in the labs. Submissions for labs are "All or Nothing" - you must submit all screenshots to get the lab mark. If you are missing any screenshots you will receive a mark of 0 for the lab.
+
+Screenshots MUST be taken using a screenshot tool in your computer. Pictures of the screen taken with your phone will not be accepted. All screenshots must have a label either above or underneath describing what the screenshot is showing.
+
 ## Using your own laptop
 
 Some of you may have completed OPS245 using your own laptop. Generally speaking, if you were able to complete OPS245 that way without any trouble, you should be able to do so in OPS345 as well. Again, do not use the same Debian host system that you used in OPS245. You will need a fresh install of Ubuntu to properly complete this course. Keep in mind that the CPU and RAM requirements in this course are more demanding than they were in OPS245. A laptop with 16GB of RAM and a CPU comparable to a 12th Gen i7-12700 or better should be fine but anything less and you are probably better off using the lab machines.

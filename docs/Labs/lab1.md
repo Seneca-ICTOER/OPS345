@@ -1,155 +1,423 @@
 ---
 id: lab1
-title: Lab 1 - Introduction to Amazon Web Services (AWS)
+title: Lab 1 - Building the "Physical" Network
 sidebar_position: 1
-description: Creating an instance in Amazon Web Services (AWS)
+description: Installing the host system, installing virtual machines, and creating the "physical" network
 ---
 
-# Lab 1 - Introduction Amazon Web Services (AWS)
+# Lab 1 - Building the "Physical" Network
 
 ## Overview
 
 This week's lab will cover the following:
 
-- Investigating the AWS Learner Lab.
-- Using the AWS Console interface.
-- Modifying Virtual Private Cloud (VPC) Security Groups.
-- Exploring Amazon Elastic Cloud Compute (EC2).
-- Adding an instance in AWS.
-- Creating SSH key pairs &amp; paired key encryption.
+- Installing our host system (Ubuntu)
+- Installing 4 Virtual Machines
+  - 2 VMs that will act as routers using Debian
+  - 1 Host machine using Mint
+  - 1 Host machine using Windows 11
+- Using KVM to replicate physical network with a virtual one
 
-## Investigating the AWS Learner Lab
+## Lab 1 Notes
 
-You should have received an email (in your Seneca Polytechnic email) from your professor inviting you to participate in the AWS Academy Learner Lab. If you have received and accepted this invitation you may proceed with this lab. If you have not received this invitation you should contact your professor immediately. You may continue with the rest of the lab once you have received the invitation. Here is a sample email.
+While lab 1 is not difficult, it is very important as you will be creating an environment/network that the next 3 labs rely on. Take your time to ensure everything is done correctly. Even a small mistake in this lab may result in you being unable to proceed in labs 2, 3, or 4. If this happens, you will have to start from Lab 1. 
+**You have been warned!**
 
-![AWS Invitation](/img/aws-invitation.png)
+If you are planning to use your own laptop for this install, please be aware of the CPU and RAM allocations for each VM. While it is technically posible to run the VMs with less RAM than what is stated in the instructions below, it is generally not advised as this may result in your VMs crashing at inopportune times. This is especially true of the Windows VM, which is very resource hungry. Also, keep in mind that you will be adding two other VMs in Assignment 1. This could stretch your host machine quite thin if it isn't beefy enough. 
 
-The AWS Learner Lab provides a sandbox environment where you can build, configure and deploy AWS assets such as instances. There are some limitations as to what you can do, however it provides all the functionality we require for this course. You are limited to $50 credit at no cost within the learner lab. Once this runs out your learner lab will be disabled. Additionally, there is no way to add funds to this pool. If you follow the lab instructions properly you should not have any issues.
+Even on the lab machines, you may experience some lag (especially on the Windows OS) when running all VMs at once. 
 
-Once you have accepted your invitation and logged into the [AWS Learner Lab](https://awsacademy.instructure.com/login/canvas) navigate to **Courses** (on the left hand side) > **Modules** > **Learner Lab**. You should see a screen that looks like the following:
-![AWS Learner Lab home](/img/learnerlabhome.png)
+On the flip side, if you are lucky enough to have a super beefy laptop, feel free to increase the CPU/RAM allocations for a smoother experience.
 
-Some important things to note on this screen:
+## Getting Started
 
-**Start Lab**: Starts the Learner Lab environment.
+The first thing we are going to do in Lab 1 is get our host system set up. We will be using Ubuntu 26.04 for our host system.
+You can find the ISO file download here --> [Ubuntu 26.04](https://ubuntu.com/download/desktop)
 
-**Stop Lab**: Stops the Learner Lab environment.
+You will have to create a bootable USB flash drive just like you did in Lab 1 back in OPS245. The difference here is that you will be using Ubuntu instead of Debian.
+If you need a refresher on how to create a bootable USB flash drive, see the [OPS245 Lab 1 page](https://seneca-ictoer.github.io/OPS245/A-Labs/lab1).
 
-**Used \$0 of \$50**: Shows the balance used of your \$50 credit. If this hits \$50 of \$50 used, your learner lab is disabled. Be careful.
+If you have another tool other than Rufus you prefer, feel free to use it but one way or another you will need to create a bootable USB flash drive with the Ubuntu installer on it. Once you have that you will install it and boot to it on an external SSD drive connected to a lab computer the same way you did with Debian in OPS245.
 
-**AWS with a red dot next to it**: Once your lab has started, this will turn green. You can then click on this to open the environment.
+**Please note that the installation of Ubuntu may take a long time. You will likely find yourself waiting on install screens for quite a while. Ensure you have at least an hour (if not more) to get your initial Ubuntu host system installed.**
 
-## Using the AWS Console interface
+## Investigation 1: Installing the Ubuntu Host System
 
-Start your session in the Learner Lab by clicking on the **Start Lab** button. Once the red dot has turned green, click on it to enter the Learner Lab. This will take you to the AWS Console (depicted below), which will be where you will do most of your work. It also mirrors a production AWS interface. Note: Your screen may not look 100% identical to the one depicted, but should be mostly the same.
-![AWS Console](/img/awsconsole.png)
+Once you have successfully launched the installer, use the following instructions to install Ubuntu 26.04 to your external SSD:
 
-If you click on **Services** in the top left corner (beside the AWS logo), you will see all the services you can configure in the AWS learner lab. Common ones we will use are EC2 and VPC. You can search for these in the search bar, or browse the categories. Recently visited services will show up under the heading **Recently visited**. If you hover over any service you will see a greyed out star to the left of the name. You can click on this to add it to your favourites for easy access.
+1. Select “English”, click “Next”
+2. Click “Next” on Accessibility screen
+3. Select “English (US) on Keyboard layout screen, click “Next”
+4. Select "wired connection"
+5. Select "Install Ubuntu"
+6.  Select Interactive installation
+7. Select "Default selection" for apps
+8. Install third-party software for graphics and Wifi, but don’t download and install support for additional media formats
+9. Select “Erase disk and install Ubuntu”, click “Next”
+10. VERY IMPORTANT: select your external hard drive, NOT THE INTERNAL ONE! (it will likely be labelled as "sda" followed by your hard drive manufacturer but double check with your teacher if you are not sure)
+11. Select "No encryption"
+12. Create your account
+  - Provide your full name
+  - Use “ubuntuhost” for your computer's name (hostname)
+  - Use your Seneca username for username (the string before the @ sign in your myseneca email address, ex hheim@myseneca.ca --> hheim)
+  - Create a password and DO NOT FORGET IT
+  - Ensure “Require my password to log in” is checked
+13. Click next. Select Toronto and click next.
+14. Double check that you are installing Ubuntu on the correct hard drive and click Install.
+15. A screen will pop up with two options: "Continue testing" and "Restart now". Select "Continue testing".
+16. Click the power button in the top right and "Poweroff" the system. 
+17. You should see a "remove the installation medium, then press ENTER" message. Remove your install USB and press enter.
+18. Once your system fully powers off, wait 10-15 seconds and then power it back on.
+19. Hit F12 to get to the boot menu once again and this time select your external hard drive to boot into Ubuntu.
 
-## Modifying VPC Security Groups
+When you have booted up and logged into Ubuntu for the first time, perform the following post-installation tasks: 
 
-An Amazon Virtual Private Cloud (VPC) is a dedicated virtual network within AWS' public cloud. It work similar to how a traditional network does in a data center. w3schools has some [additional information](https://www.w3schools.com/aws/aws_cloudessentials_awsconnectivity.php).
-
-Click on **Services** > **Compute** > **EC2**. **Security Group** settings are located in the left side navigation under **Network & Security** > **Security Groups**. Click on **Security Groups**.
-
-Your screen should look like the following:
-![AWS Security Groups](/img/awssecuritygroups.png)
-
-Make sure the box beside your **Security Group** is checked. Click on **InBound rules** > **Edit InBound Rules** and add the following rule:
-
-- **Type:** SSH or **Port Range:** 22 (both will accomplish the same thing)
-- **The box beside the magnifying glass:** 0.0.0.0/0
-- Click **Save Rules**
-
-This will allow incoming SSH connections from anywhere. We will use this in the next part to connect to your instance. The screenshot below shows what your inbound rules should look like:
-![AWS Inbound Rules - Lab 1](/img/awssg-inboundrules.png)
-
-## Exploring Amazon Elastic Cloud Compute (EC2)
-
-EC2 is where you will end up spending the most amount of time configuring things in this course. From here you can do things like launch instances, manage networking services and much more. To access EC2, click on **Services** (top left corner beside the AWS icon), and navigate to **Compute > EC2**. You may wish to add this to your favourites for easy access by hovering over and clicking the star. Your initial screen should look something like the following. w3schools has some [additional information](https://www.w3schools.com/aws/aws_cloudessentials_ec2intro.php)
-
-![AWS EC2](/img/awsec2.png)
-
-## Adding an instance in AWS
-
-Click on Launch instance just below the Resources pane. From the Launch an instance screen, select the following options:
-
-- **Name:** first
-- **OS:** Ubuntu
-- **Amazon Machine Image (AMI):** Make sure Ubuntu Sever 24.04 is selected
-
-## Creating SSH key pairs & using public key cryptography
-
-Under **Key pair (login)** click Create new key pair. Give it the name ops345, accept the rest of the defaults and click "Create key pair". It will download to your default download location immediately.
-
-Important: Do not lose your key pair or you will be unable to connect to your instance using SSH.
-
-Under **Network Settings** click **Select existing security group**. Click the dropdown and check the default. Click Launch instance. Once it has finished completing (you should see a success message), click on the **instance ID** in the **Success message**. This will take you to **Instances** in **EC2**.
-
-### Accessing Your Instance
-Click on the **Instance ID** for your **first** instance. click **Connect**.
-
-Note there are a few ways to connect to your instance from here. The easiest to use are:
-
-- EC2 Instance Connect: Allows you to connect to your instance from within your web browser.
-- SSH client: Allows you to connect to your instance using the SSH key pair (which you generated when you created the instance).
-
-You can use either EC2 Instance Connect or connect using an SSH client to remotely access your new Linux VM remotely using SSH, which is a command-line (CLI) only protocol.
-
-#### Connecting using EC2 Instance Connect
-Make sure you are on the **EC2 Instance Connect** tab. Note the username. Scroll down to the bottom, accept the defaults and click **Connect**. You should have command line access to your instance in your web browser. If the connection fails, double check your security group configuration and make sure **ssh** (port 22) has been allowed from **0.0.0.0/0** in the inbound settings, as indicated earlier in the lab.
-
-### Connecting via An SSH Client
-
-- Windows: Use the built-in Command Prompt or PowerShell application.
-- macOS/Linux: Use the built-in Terminal application.
-
-#### For all clients
-
-- In the Linux EC2 Instance details page, click the Connect button.
-- In the new Connect to instance page, click on the SSH client tab.
-- Copy the example command near the bottom of the page. (Use your example command)
-- Choose the proper OS below and continue.
-
-#### On Windows, Using Command Prompt or PowerShell:
-
-- Open Command Prompt or PowerShell.
-- Change directories to your default Downloads folder with the following command: cd Downloads (If you saved your .pem file elsewhere, navigate there. Or move the .pem file into Downloads.)
-- Paste the example command from the Connect to instance page, and press Enter.
-- The SSH command will ask you to confirm connecting. Type yes and press Enter.
-- If login is successful, you should see a prompt like this:
-
+1. On “Welcome to Ubuntu” screen, click “next”
+2. Do not turn on "Location services"
+3. Do not share anything on the "Help improve ubuntu" screen
+4. Customize Ubuntu's appearance to your liking on the following screen
+6. Click “Finish”
+7. Open the terminal and add a root password (AND DON'T FORGET IT)
 ```bash
-ubuntu@ip-172-31-91-76:~$
+sudo passwd
 ```
-- To quit, type **quit**, **exit** or **ctrl+d**.
-
-#### On macOS/Linux, Using Terminal:
-
-- Open Terminal.
-- Change directories to your default Downloads folder with the following command: cd Downloads (If you saved your .pem file elsewhere, navigate there. Or move the .pem file into Downloads.)
-- Change the file permissions of your .pem file with this command: chmod 400 \*.pem
-- Paste the example command from the Connect to instance page, and press Enter.
-- The SSH command will ask you to confirm connecting. Type yes and press Enter.
-- If login is successful, you should see a prompt like this:
+8. Update your system
 ```bash
-ubuntu@ip-172-31-91-76:~$
+sudo apt update && sudo apt upgrade
 ```
-- To quit, type **quit**, **exit** or **ctrl+d**.
+9. Stop and disable apparmor
+```bash
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+```
+10. Reboot your system. Note, you may have to fully power off your system (not restart it) to ensure the lab machine recognizes your external install of ubuntu.
+11. Install vim
+```bash
+sudo apt install vim
+```
+12. Install KVM
+```bash
+sudo apt install qemu-system libvirt-daemon-system virtinst virt-manager
+```
+13. Fully power off the system
+```bash
+sudo poweroff
+```
+
+14. Boot up and log back into Ubuntu.
+
+## Investigation 2: Installing Virtual Machines
+
+Before we begin installing our VMs, we will need the images of the Operating Systems we will be using.
+
+Download the following to your Ubuntu host system:
+
+[Linux Debian](https://www.debian.org/)
+
+- Click "Download"
+
+[Linux Mint](https://linuxmint.com/download.php)
+
+- Download Cinnamon version
+
+[Windows 11](https://www.microsoft.com/en-us/software-download/windows11)
+
+- Select “Windows 11”, click “confirm”
+- Select “English (United States)” for language. Click “confirm”
+- Click “64-bit Download”
+
+Once you have all 3 ISO images, you can begin installing your VMs.
+
+### Creating Debian Router VMs
+
+1. In KVM, select “Create a new virtual machine”
+2. Select “Local install media”, click “Forward”
+3. Browse and select your Debian ISO image file, unckeck “Automatically detect from installation media” and manually select “Debian 13”. Click “Forward”
+4. Leave default Memory and CPUS (should be 2048 and 2). Click “Forward”
+5. Change disk image size to 15.0GB. Click “Forward”
+6. Change Name to “deb-router-1". Network selection should be “default: NAT”. Check “Customize configuration before install”. Click “Finish”.
+7. Under “CPUs”, make sure “Copy host CPU configuration (host-passthrough) is checked, then click “Begin Installation”
+8. Select “Graphical install”
+9. Select a language: “English”
+10. Select your location: “Canada”
+11. Configure the keyboard: “American English”
+12. Enter  “deb-router-1" for the hostname
+13. Leave Domain name blank
+14. Do not set a root password
+15. Enter your full name
+16. Use your seneca id for your username (the string before the @ sign in your myseneca email address, ex hheim@myseneca.ca --> hheim)
+17. Use the same password you used for your Ubuntu host system and do not forget it!
+18. Configure the clock: Eastern
+19. Partition disks: Guided – use entire disk
+20. Only vda should show up, click “Continue”
+21. Select “All files in one partition”
+22. Select “Finish partitioning and write changes to disk”, click “Continue”
+23. Write changes to disk? Select “Yes” and click “Continue”
+24. Scan extra installation media? **No**
+25. Debian archive mirror country: Canada
+26. Select default archive mirror: deb.debian.org
+27. Leave HTTP proxy blank
+28. Participate in the package usage survey? **No**
+29. Choose software to install:
+  - uncheck “Debian Desktop Environment”
+  - uncheck “GNOME”
+  - Check “SSH server”
+  - Leave “standard system utilities’ checked
+  - Click “Continue”
+30. Install the GRUB boot loader to your primary drive? **Yes**
+31. Device for boot loader installation: “/dev/vda”
+32. Click “Continue” to reboot 
+
+### Post-installation tasks for Debian router 
+
+1. Login using the credentials you set up and run “sudo passwd”. Use the same password as you have been for the super user password.
+2. Check to make sure you can login as root using the “su” command. If successful, run “exit”.
+3. Update the system.
+4. Stop and disable Apparmor.
+5. Install vim.
+6. Reboot the VM.  
+
+Once it successfully reboots, you can power it off. 
+
+Create another Debian VM using the exact same installation steps and post-installation tasks that you used for deb-router-1 except this time the VM will be called “deb-router-2" and its hostname will also be “deb-router-2".
+
+### Creating Linux Mint Client VM
+
+1. In KVM, select “Create a new virtual machine”
+2. Select “Local install media”, click “Forward”
+3. Browse and select your Mint ISO image file, unckeck “Automatically detect from installation media” and manually select “Generic Linux 2024”. Click “Forward”
+4. Set Memory and CPUS to 2048 and 2. Click “Forward”
+5. Leave default disk image space (should be 25GB). Click “Forward”
+6. Change name to “mint-client”. Network selection should be “default: NAT”. Check “Customize configuration before install”. Click “Finish”
+7. Under “CPUs”, make sure “Copy host CPU configuration (host-passthrough) is checked, then click “Begin Installation”
+8. Select “Start Linux Mint”. Your VM will eventually boot to the Live Mint image.
+9. Double click the “Install Linux Mint” icon on the desktop.
+10. Under the welcome screen, select “English” and click “Continue”
+11. For Keyboard layout, select “English (US)” for both selections
+12. Leave the “Install multimedia codecs” unchecked
+13. Select “Erase disk and install Linux Mint”, click “Install Now”
+14. Click “Continue” at the prompt
+15. Select “Toronto” if it is not already selected
+16. At the “Who are you?” screen:
+  - Enter your full name
+  - Use “mint-client” for the computer’s name
+  - Use your seneca id for your username (the string before the @ sign in your myseneca email address, ex hheim@myseneca.ca --> hheim)
+  - Use the same password you used for your Ubuntu host system and do not forget it!
+  - Ensure “Require my password to log in” is checked
+  - Click “Continue” 
+17. Install will proceed. Click “Restart Now” when prompted.
+18. Press “Enter” on the keyboard when prompted.
+
+Mint will reboot.  
+
+### Post-installation tasks for Mint client 
+
+1. Log in.
+2. Hit the blue “x” button to exit the Welcome window.
+3. Open a terminal window.
+4. Run “sudo passwd”. Use the same password as you have been for the super user password.
+5. Check to make sure you can login as root using the “su” command. If successful, run “exit”
+6. Update the system.
+7. Stop and disable Apparmor.
+8. Install vim
+9. Reboot the VM. Once it successfully reboots, you can power it off. 
+
+### Creating MS Windows Client VM
+
+**Note: It is best to keep other VMs turned off while installing this VM**
+
+1. In KVM, select “Create a new virtual machine”
+2. Select “Local install media”, click “Forward”
+3. Browse and select your MS Windows 11 ISO image file, leave “Automatically detect from installation media” checked and KVM should automatically select “Microsoft Windows 11”. Click “Forward”
+4. Leave Memory and CPUs as default (should be Memory at 8192 and CPUS to 4). Click “Forward”
+5. Set disk space to 90.0GB. Click “Forward”
+6. Change name to “win-client”. Network selection should be “default: NAT”. Check “Customize configuration before install”. Click “Finish”
+7. Under “CPUs”, make sure “Copy host CPU configuration (host-passthrough) is checked, then click “Begin Installation”
+8. On the language settings screen, set both options to “English (United States)”
+9. On the Keyboard settings screen, set keyboard to “US”
+10. On the select setup option screen, select “Install Windows 11” and check the “I agree...” button below
+11. On the Product key screen, click on “I don’t have a product key”
+12. On the Select Image screen, select “Windows 11 Education N”
+13. Accept the license terms
+14. Select the only available disk and click “Next”
+15. Click “Install”
+16. The install process will take some time and the VM will reboot several times
+17. Eventually you will land on the country/region screen. Select “Canada”
+18. Select “US” on the keyboard layout screen
+19. “Skip” adding a second keyboard layout
+20. On the sign in screen, click on “Sign-in options” and click “Domain join instead”
+21. Enter your full name and click “Next”. Enter the same password you have been using and click “Next”
+22. Enter 3 security questions and answers
+23. Click “No”, “No”, “Required Only”, “No”, “No” for the next 5 screens
+24. Windows will then continue to download/install for a while (so get comfy or go grab a coffee or something) and *eventually* you will be in
+25. Reboot windows 
+
+### Post-Installation Tasks for MS Windows client 
+
+1. Click the Windows icon at the bottom of the screen and then type “Computer Name” and press “Enter”.
+2. Change the computer name to “win-client” and reboot the system.
+3. After reboot, log back in and click the Windows icon at the bottom of the screen and then type “Windows Update” and press “Enter”.
+4. Download and install all main updates (you don’t need to install any “Preview” updates).
+5. Restart Windows when everything looks to be completed. When you log back in, go back to “Windows Updates” and make sure Windows tells you “You’re up to date”.
+6. Shut down Windows 
+
+## Investigation 3: Building the "Physical" Network Infrastructure
+
+### Overview of our goal
+
+We now have 4 VMs set up and ready to use. These 4 VMs are connected together via a default virtual network that was automatically set up by KVM between all the VMs and the Ubuntu host system. This means that all VMs can ping one another and they can also ping the host system. They are all also able to connect to the Internet through the Ubuntu host system. 
+
+In this next section, we are going to change all this because we want to turn our current network environment into something that more closely resembles a physical network environment (although we won't be able to mirror one exactly).
+
+Essentially, we are going to turn our network environment into this:
+
+![OPS345 Starting Network Diagram](/img/OPS345Network.png)
+
+The goal is to have our Debian VMs acting as routers that our client VMs will rely on to send traffic to where it needs to go, whether that destination is on the same subnet, a different subnet, or on the Internet. 
+
+We will also be turning deb-router-1 into a gateway to the Internet and NAT device. This means that all traffic that goes to or comes from the Internet will go through deb-router-1. All other devices in our network will be connected locally only and will rely on deb-router-1 to get to the outside world. 
+
+Technically, the Ubunutu host system also plays a role in Internet connectivity in this setup (as it is through the Ubuntu host that deb-router-1 will be able to access the Internet), but for the purpose of learning how to properly configure and route our network, we are going to ignore the Ubuntu host moving forward and pretend that our virtual machines are physical devices connected with physical cables. 
+
+In order to do that, however, we need to re-build the "physical" networking portion of our environment to make it resemble a physical network environment. 
+
+This will require us dive a little deeper into KVM and its network configurations. 
+
+### Creating and Modifying KVM Networks
+
+KVM can be used to create several different types of networking schemes. For most of OPS245, you used the default mode for creating a virtual network - "NAT" mode. This ensured that all VMs had access to one another and the Internet via the host system (the OS on which KVM was installed). Basically, the host system acted as a router and NAT device for all the VMs inside it. 
+
+Recall that in OPS245, eventually you switched your VMs over to a private virtual network. You manually configured their IP addresses to allow them to connect with one another but you lost access to the Internet because the host system was no longer acting as a router/gateway which allowed access outside of the local network. The network was still technically capable of having all your VMs connect to the host but it was not longer acting as a router/gateway. 
+
+In this class, we also don't want our host system to act as a router/gateway for all of our VMs. We don't really want our host system to do anything other than host the VMs and act as a pathway for deb-router-1 to get to the Internet. We want to set everything else up manually. For that, we are going to go a step further and rely on a new mode in KVM - "isolated" mode.
+
+We are going to set up these "isolated" network segments so that they are NOT connected to the Ubuntu host at all. They will strictly be used by our VMs to talk to one another. 
+
+Before we get started with that, ensure that everything is currently set up with the default network settings in KVM. The easiest way to do this is to:
+- Start up all 4 of your VMs (deb-router-1, deb-router-2, mint-client, and win-client)
+- Using the command line on all 4, run “ping google.com” and ensure that all 4 have internet access. 
+
+If successful, shut down all 4 VMs. 
+
+Next we will add 3 isolated network segments into KVM.
+- The first will be an isolated network that acts as our “backbone” which links our two routers.
+- The second will be an isolated network that connects mint-client to deb-router-1.
+- The third will be an isolated network that connects win-client to deb-router-2. 
+
+To begin, open your Virtual Machine Manager, highlight "QEMU/KVM", click on “Edit” >> “Connection Details” >> “Virtual Networks”
+
+- Click the green “+” in the bottom left and add a new network with the following config:
+  - Name: backbone
+  - Mode: isolated
+  - Enable IPv4: unchecked
+  - Enable IPv6: unchecked
+  - Use network name: selected
+  - Click “Finish” 
+
+- Click the green “+” in the bottom left again and add a new network with the following config:
+  - Name: cn1
+  - Mode: isolated
+  - Enable IPv4: unchecked
+  - Enable IPv6: unchecked
+  - Use network name: selected
+  - Click “Finish” 
+
+- Click the green “+” in the bottom left again and add a new network with the following config:
+  - Name: cn2
+  - Mode: isolated
+  - Enable IPv4: unchecked
+  - Enable IPv6: unchecked
+  - Use network name: selected
+  - Click “Finish”
+
+You should have 4 virtual networks now: the three you just created (backbone, cn1, cn2) and the default network that came with Virtual Machine Manager which is currently providing Internet access to all four of our VMs. 
+
+- Close the "Connection Details" window.
+
+Next, we are going to attach our VMs to these networks. We are also going to detach all of our VMs from the “default” network except for deb-router 1. This means that for a time, only deb-router-1 will have internet access. However, we are going to configure deb-router-2, mint-client, and win-client so that they can access the internet via deb-router-1 in lab 2. 
+
+### "Physically" attaching our VMs to our network segments
+
+First we will attach deb-router-1 to its new networks:
+
+- Double click on the “deb-router-1" VM but do not power it on.
+- Click on “View” >> “Details”
+- Click on “Add Hardware” in the bottom left
+- Click on “Network” and then change “Network Source” to the “backbone” isolated network we created. Click “Finish”
+- Click on “Add Hardware” again.
+- Click on “Network” and then change “Network Source” to the “cn1” isolated network we created. Click “Finish” 
+
+Your deb-router-1 VM should now have 3 NICs: one attached to the “default” NAT network, one attached to the “backbone” isolated network, and one attached to the “cn1” isolated network. Make note of their MAC addresses for easier identification later.
+
+Next, we will adjust the networks that deb-router-2 is attached to:
+
+- Double click on the “deb-router-2" VM but do not power it on.
+- Click on “View” >> “Details”
+- Click on “Add Hardware” in the bottom left
+- Click on “Network” and then change “Network Source” to the “backbone” isolated network we created. Click “Finish”
+- Click on “Add Hardware” again.
+- Click on “Network” and then change “Network Source” to the “cn2” isolated network we created. Click “Finish”
+- Click on the NIC that is currently attached to the “default” NAT network. Click “Remove” to remove that NIC from deb-router-2. This will disconnect the deb-router-2 VM from your Ubuntu Host system. 
+
+Your deb-router-2 VM should now have 2 NICs: one attached to the “backbone” isolated network and one attached to the “cn2” isolated network. Make note of their MAC addresses for easier identification later.
+
+Next, we will adjust the networks that mint-client is attached to:
+
+- Double click on the “mint-client" VM but do not power it on.
+- Click on “View” >> “Details”
+- Click on “Add Hardware” in the bottom left
+- Click on “Network” and then change “Network Source” to the “cn1” isolated network we created. Click “Finish”
+- Click on the NIC that is currently attached to the “default” NAT network. Click “Remove” to remove that NIC from mint-client. This will disconnect the mint-client VM from your Ubuntu Host system.  
+
+Your mint-client VM should now have 1 NIC that is attached to the “cn1” isolated network. Make note of their MAC addresses for easier identification later.
+
+Finally, we will adjust the networks that win-client is attached to:
+
+- Double click on the “win-client" VM but do not power it on.
+- Click on “View” >> “Details”
+- Click on “Add Hardware” in the bottom left
+- Click on “Network” and then change “Network Source” to the “cn2” isolated network we created. Click “Finish”
+- Click on the NIC that is currently attached to the “default” NAT network. Click “Remove” to remove that NIC from win-client. This will disconnect the win-client VM from your Ubuntu Host system. 
+
+Your win-client VM should now have 1 NIC that is attached to the “cn2” isolated network. Make note of their MAC addresses for easier identification later.
+
+At this point your VMs should be connected as follows: 
+
+**deb-router-1 connected to:**
+- “default” NAT network
+- “backbone” isolated network
+- “cn1” isolated network 
+
+**deb-router-2 connected to:**
+- “backbone” isolated network
+- “cn2” isolated network 
+
+**mint-client connected to:**
+- “cn1” isolated network 
+
+**win-client connected to:** 
+- “cn2” isolated network 
+
+Boot up all 4 VMs and try to ping google.com from their command lines. Only your deb-router-1 should be successful. If any other VM can ping google, go back and double check your configuration and the steps you used to get here. 
+
+## Backing Up our VMs
+It is a good idea to back up your VMs at this point and when you have successfully completed each of the first 4 labs. You can do this two ways:
+- You can use the gzip method that you used in [Lab 2](https://seneca-ictoer.github.io/OPS245/A-Labs/lab2) of OPS245
+- You can create Virtual Machine clones by right-clicking on each VM and clicking "Clone".
+
+There are pros and cons to both methods. Using gzip will use less space on your hard drive so if you have a small hard drive (ex 256GB) you will want to use that method. 
+
+If you have a hard drive that is 500GB or larger, you will have enough space to clone your VMs. Just be sure to delete the old clone when creating a new one. You don't want to mix them up or have them come into conflict with one another. 
+
+If you are unsure, ask your teacher.
 
 ## Lab 1 Sign-Off
 
-Take a screenshot showing a successful connection to your instance. The following Exploration Questions are for furthering your knowledge only, and may appear on quizzes or tests at any time later in this course.
+Take screenshots showing the following and organize them nicely into a single document:
+- The "details" screen of deb-router-1 showing its NICs and which networks they are attached to
+- The "details" screen of deb-router-2 showing its NICs and which networks they are attached to
+- The "details" screen of mint-client showing its NICs and which networks they are attached to
+- The "details" screen of win-client showing its NICs and which networks they are attached to
+- deb-router-1 successfully pinging google.com
 
-When you shut off your learner lab, all resources (such as instances) are shut off. You do not need to shut down your instance. It will be automatically started again the next time you start your learner lab. **Shut down** your learner lab by navigating to the Learner Lab home page and click **End Lab**.
-
-## Exploration Questions
-
-1. How do you start/stop the AWS learner lab?
-1. How do you enter the AWS learner lab once you have started it?
-1. What happens to your learner lab if your credits hit $50 of $50 used?
-1. Where do you go to edit networking configuration options such as **security groups**?
-1. Where do you go to launch an instance?
-1. What is an instance?
-1. What command do you use to access an instance in AWS from your command line?
-1. What is public-key cryptography?
+Make sure you label your screenshots!

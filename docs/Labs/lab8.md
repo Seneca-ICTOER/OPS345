@@ -1,19 +1,121 @@
 ---
 id: lab8
-title: Lab 8 - Elastic Beanstalk
+title: Lab 8 - Simple Storage Service (S3) and Elastic Beanstalk
 sidebar_position: 8
-description: Hosting Wordpress using AWS Elastic Beanstalk
+description: Backing up files using Simple Storage Service (S3) Buckets and Hosting Wordpress using AWS Elastic Beanstalk
 ---
-
-# Lab 8 - Elastic Beanstalk
+# Lab 8 - Simple Storage Service (S3) Glacier and Elastic Beanstalk
 
 ## Overview
-
 This week's lab will cover the following:
 
-- Creating a new RDS
+- Modifying the wordpress source code to prepare it for use in Elastic Beanstalk
+- Creating a public Simple Storage Service (S3) bucket
+- Uploading files to a Simple Storage Service (S3) bucket
+- Creating a new RDS for use with Elastic Beanstalk
 - Configuring Elastic Beanstalk
 - Installing and configuring Wordpress
+
+## Investigation 1: Wordpress Source Code Modification
+
+Before we get into Elastic Beanstalk, we are going to set up a basic Wordpress configuration and store it in a zip file. Then we will use the AWS Simple Storage Service (S3) to create a bucket and store our Wordpress configuration in it. This will allow us to easily launch Wordpress inside the Elastic Beanstalk once the environment is set up. 
+
+### Download and Unzip - Local Computer
+
+1. On your local computer, download the current Wordpress source code from here: https://wordpress.org/latest.zip
+1. Unzip the file. You should end up with a _wordpress_ directory. (Do not delete the original .zip file)
+
+### Modify Wordpress Configuration File
+
+#### Duplicate and Open Configuration File
+
+1. In the local _wordpress_ folder, find a file called: **wp-config-sample.php**
+1. Duplicate this file, and call it: **wp-config.php**
+1. Open **wp-config.php** in a text editor. Using a tool that supports syntax highlighting, such as Visual Studio Code, will make this easier.
+   - To install VSCode in Ubuntu, open the "App Centre", search for VSCode, and "Install". 
+
+#### Adding Database Connector Info as Environment Variables
+
+In this file (wp-config.php), you will be adding database connector information as **_environment variables_**, not the actual connector information. (We'll add that information later.)
+
+Find the following lines and add the bolded values:
+
+1. define('DB_NAME', **getenv('DB_NAME')**);
+1. define('DB_USER', **getenv('DB_USER')**);
+1. define('DB_PASSWORD', **getenv('DB_PASSWORD')**);
+1. define('DB_HOST', **getenv('DB_HOST')**);
+
+#### Adding Authentication Unique Keys and Salts as Environment Variables
+
+In the same file (wp-config.php), you'll be adding the authentication keys and salts as **_environment variables_**.
+
+Find the following lines and add the bolded values:
+
+1. define('AUTH_KEY', **getenv('AUTH_KEY')**);
+1. define('SECURE_AUTH_KEY', **getenv('SECURE_AUTH_KEY')**);
+1. define('LOGGED_IN_KEY', **getenv('LOGGED_IN_KEY')**);
+1. define('NONCE_KEY', **getenv('NONCE_KEY')**);
+1. define('AUTH_SALT', **getenv('AUTH_SALT')**);
+1. define('SECURE_AUTH_SALT', **getenv('SECURE_AUTH_SALT')**);
+1. define('LOGGED_IN_SALT', **getenv('LOGGED_IN_SALT')**);
+1. define('NONCE_SALT', **getenv('NONCE_SALT')**);
+
+![Image: Adding database connector information to wp-config.php.](/img/a2_wp-config-example.png)
+_Figure 1: Adding database connector information to wp-config.php._
+
+Confirm the values are correct and **save** the file.
+
+### Zip As New File and Rename - Local Computer
+
+> Warning: Make sure you **only** zip the wordpress directory, not the directory with the version number.
+
+1. Find the **wordpress** folder on your local computer.
+1. _Zip the entire wordpress directory_, not just the files inside. (Use the zip compression protocol. Don't use something else like .rar.)
+1. Rename your new zip file: **wordpress-6.7.2-_modded_.zip** (Use whatever version the source zip file has.)
+
+## Investigation 2: Creating a Simple Storage Service (S3) Bucket
+
+Start your session in the Learner Lab by clicking on the Start Lab button. You are going to create an S3 bucket and upload your wordpress configuration files.
+
+From the Console Home navigate to **Storage** > **S3**.
+
+- Navigate to Amazon S3
+- Click **Create bucket**
+
+### General configuration
+- General purpose: **selected**
+- Bucket name: **senecausername-wordpress**
+
+### Object Ownership
+- ACLs disabled (recommended): **selected**
+
+### Block Public Access settings for this bucket
+- Block _all_ public access: **unchecked**
+- I acknowledge that the current settings might result in this bucket and the objects within becoming public: **checked**
+
+### Bucket versioning
+- Enable
+
+### Default encryption
+- Accept the defaults
+
+### Bucket key
+- Enable
+
+Scroll down and click **Create bucket**
+
+Once your bucket has created, click on your **bucket's name** (ie: **candice-wordpress**).
+- Click **Upload**
+- Click **Add files**
+- Select your wordpress-modded zip file
+
+> Make note of the Destination location: ie: **s3://candice-wordpress**. You will need this in the next part of this lab.
+
+- Click **Upload**
+
+Now that we have our Wordpress config ready to go in our S3 bucket, we can move on to creating our Elastic Beanstalk environment.
+
+## Elastic Beanstalk Overview
 
 When you have installed Wordpress previously, you simply uploaded the source code and the first time you load the webpage, provided the database connector information. However, Elastic Beanstalk applications are meant to be disposable.
 
@@ -21,11 +123,13 @@ Normally, when you add that database connector info, it is saved in a file calle
 
 We _could_ add the DB connector info to _wp-config.php_ manually before we upload the source code, but there's a much better way.
 
-We use **environment variables** to allow us to put all the info in the Elastic Beanstalk application wizard directly. That way, every time the application restarts and reloads from the source code zip, it'll then read our saved connector information from AWS itself. Read below for details and steps.
+We use **environment variables** to allow us to put all the info in the Elastic Beanstalk application wizard directly. That way, every time the application restarts and reloads from the source code zip, it'll then read our saved connector information from AWS itself.
 
 **Note:** All other information, like the Wordpress website name, users, theme settings, blog posts, etc., are saved in the actual database you created in RDS. This database does not get reset when the Elastic Beanstalk application restarts, so your actual blog data will remain intact.
 
-## Investigation 1: Creating a RDS instance
+<!--
+
+## Investigation 3: Creating a RDS instance
 
 Start your session in the Learner Lab by clicking on the **Start Lab** button. Once the red dot has turned green, click on it to enter the Learner Lab and access the AWS Console interface. You are going to create a new RDS instance.
 
@@ -72,9 +176,15 @@ Store the following connection information about your RDS instance in your lab l
 1. **Master username**
 1. **Master password**
 
-### Connecting to your database from www
+-->
 
-Login to your **www** instance, and issue the following command to connect to your database. Be sure to substitute the credentials you wrote down earlier.
+## Investigation 3: Setting up an Elastic Beanstalk environment
+
+### Creating a new database in wordpress-db
+
+Before we create the Elastic Beanstalk environment, we are going to add a new database to the existing wordpress-db. This new database will be used by the Elastic Beanstalk version of Wordpress that we will be setting up.
+
+Login to your **www** instance, and issue the following command to connect to your database. Substitute the credentials you wrote down in lab 7.
 
 ```bash
 mysql -u admin -h **endpoint** -p
@@ -89,6 +199,16 @@ Issue the following command to display the databases.
 ```bash
 show databases;
 ```
+You should see the "wordpress" database your created in lab 7. Now lets add another.
+
+Issue the following commands:
+
+```bash
+create database ebwordpress;
+show databases;
+```
+
+You should see the new "ebwordpress" database listed along with the old "wordpress" database.
 
 Disconnect from the database.
 
@@ -96,7 +216,9 @@ Disconnect from the database.
 quit;
 ```
 
-## Investigation 2: Elastic Beanstalk
+Now we can move on to creating our Elastic Beanstalk environment.
+
+### Creating the Elastic Beanstalk environment
 
 Navigate to **Compute** > **Elastic Beanstalk**. See the following screenshot for reference.
 
@@ -116,12 +238,11 @@ Select: **Web server environment**
 1. Environment name: **Wordpress-env**
 
 ## Platform
-1. Ensure **Managed platform** checked
 1. Platform: **PHP**
 1. Platform branch: **PHP 8.4** (or current latest)
 1. Application code: **Upload your code**
 1. Version label: **wordpress-6.7.2** (Use the version from your zip filename)
-1. Public S3 URL: **https://username-wordpress.s3.us-east-1.amazonaws.com/wordpress-6.8.1-modded.zip** (Where **username** is **your Seneca username**)
+1. Public S3 URL: **https://username-wordpress.s3.us-east-1.amazonaws.com/wordpress-6.8.1-modded.zip** (Where **username** is **your Seneca username** and the zip file is the one you uploaded)
 
 ## Presets
 1. Presets: **Single instance (free tier eligible)**
@@ -144,18 +265,19 @@ Click next
 
 #### Instance Settings
 
-1. Public IP address Activated: **Checked**
-1. **Instance** subnets: **Public Subnet 1, Public Subnet 2** (both checked)
+1. Public IP address: **Subnet Default**
+1. Instance subnets: **Public Subnet 1, Public Subnet 2** (both checked)
 
+
+#### Database
+
+1. Click **Enable database**
+1. Database subnets: **Private Subnet 1, Private Subnet 2** (both checked)
 
 #### Database settings
 
-1. **Database** subnets: **Private Subnet 1, Private Subnet 2** (both checked)
-
-Click **Enable database**
-
 1. Username: admin
-1. Password: _The password you copied and wrote down earlier_
+1. Password: Your database password
 
 Click next
 
@@ -193,7 +315,7 @@ Before beginning this section, you will need two things:
 1. Document root: **/wordpress**
 1. Click **Add environment property** and add the following **Environment properties**
    1. DB_HOST: **your RDS database URL**
-   1. DB_NAME: **wordpress**
+   1. DB_NAME: **ebwordpress** (MAKE SURE YOU USE "ebwordpress" here and not the old database "wordpress" from lab 7)
    1. DB_USER: **admin**
    1. DB_PASSWORD: **your auto-generated database password**
    1. AUTH_KEY: **(use gathered info from salt page)**
@@ -205,10 +327,10 @@ Before beginning this section, you will need two things:
    1. LOGGED_IN_SALT: **(use gathered info from salt page)**
    1. NONCE_SALT: **(use gathered info from salt page)**
 
-Hint: None of these values should have single quotes in them. (i.e. ')
+Note: None of these values should have single quotes in them. (i.e. ')
 
-![Image: Adding database connector information, auth keys and salts to your Elastic Beanstalk application as static Environment Variables.](/img/a2_beanstalk-environment-variables-example.png)
-_Figure 2: Adding database connector information, auth keys and salts to your Elastic Beanstalk application as static **Environment Variables**._
+![Image: Adding database connector information, auth keys and salts to your Elastic Beanstalk application as static Environment Variables.](/img/a2_beanstalk-environment-variables-example-updated.png)
+_Figure 2: Adding database connector information, auth keys and salts to your Elastic Beanstalk application as static **Environment Variables**. Note that this image is just an example. Your values other than those for DB_HOST and DB_NAME will be different._
 
 Click next.
 
@@ -224,9 +346,11 @@ While you wait for the creation to complete, check your e-mail to confirm your n
 
 If your application fails to build, double check your **wp-config.php** configuration file for syntax errors. Additionally, make sure when you rezipped the file you only select the **wordpress** folder, not the main folder.
 
-## Investigation 3: Accessing Wordpress
+## Investigation 5: Accessing Wordpress
 
-Open the URL presented in the Wordpress EBS instance and begin the site setup.
+When the environment successfully launches (the blue bar at the top of the screen turns green) you are ready to go.
+
+Open the URL listed under "Domain" on the Wordpress-env screen (Wordpress-env.something.us-east-1.elasticbeanstalk.com) and begin the site setup.
 
 ### Site Information
 
@@ -250,18 +374,27 @@ Add a blog post detailing the following:
 
 ## Lab 8 Sign-Off (Show Instructor)
 
-Take screenshots showing the following:
+Take screenshots showing the following and organize them nicely into a single document:
 
-- Your blog post.
+- Your S3 bucket with your wordpress zip file in it
+- Your blog post (including the URL in the browser)
 
-Shutting down your database:
-- Naviage to **Aurora and RDS** > **Databses**.
+Make sure you label your screenshots!
+
+If you are not moving directly into Assignment 2 upon completion of this lab you will want to temporarily stop your database to avoid accruing unnecessary cost.
+
+To do this:
+- Navigate to **Aurora and RDS** > **Databases**.
 - Select the radio button beside **wordpress-db**
 - Click on **Actions** > **Stop temporarily**
 
-This will shutdown your database for 7 days and pause billing. You may need to repeat this.
+This will shutdown your database for 7 days and pause billing. You will need to repeat this every 7 days or until you have completed Assignment 2.
+
+Do not delete the database yet. You will need it to complete Assignment 2.
 
 ## Exploration Questions
 
+1. What is S3?
+1. Describe the process of creating an S3 bucket as outlined in the lab instructions.
 1. What is Elastic Beanstalk?
-1. How is this lab similar to the wordpress install in **Lab 5**? How is it different?
+1. How is this lab similar to the wordpress install in **Lab 6/7**? How is it different?

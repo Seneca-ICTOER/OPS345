@@ -344,7 +344,7 @@ Verify your inbound rules with the following screenshot.
 
 1. Click on **Subnets** under **Virtual private cloud** (left side).
 2. Check the box beside **Public Subnet 1**
-3. Click **Actions** > **Edit route table association**
+3. Click **Actions** > **Replace route table**
 4. Select **Wordpress Website Route Table** in the **Route table ID** dropdown menu.
 5. Click save.
 

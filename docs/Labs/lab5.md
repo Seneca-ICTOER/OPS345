@@ -268,7 +268,7 @@ Create a new Internet Gateway with the following:
 
 ### Route Tables
 
-You are going to create **Route tables** in your **VPC** to allow traffic from within your VPC to be routed externally through the **Internet Gateway** you created. In the search box at the top, type VPC.
+You are going to create **Route tables** in your **VPC** to allow traffic from within your VPC to be routed externally through the **Internet Gateway** you created.
 
 1. Click on **Route Tables** (located on the left side under **Virtual private cloud**. See screenshot for clarity).
 
@@ -276,7 +276,7 @@ You are going to create **Route tables** in your **VPC** to allow traffic from w
 
 2. Next, click **Create route table** (top right corner).
 
-Create a second route table:
+Create a route table:
 
 3. Name: **Wordpress Website Route Table**
 4. VPC: **Wordpress VPC**

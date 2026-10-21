@@ -365,9 +365,7 @@ Create a new instance in AWS with the following configuration:
 
 Verify your settings are correct and click **Launch Instance**.
 
-Once the instance has created, confirm you can connect to it using:
-- EC2 Instance Connect
-- Via SSH
+Once the instance has created, confirm you can connect to it via SSH from your Ubuntu host.
 
 You will also want to update the instance:
 ```bash

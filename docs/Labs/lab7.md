@@ -31,13 +31,14 @@ Click **Create database** (part way down the screen) and select "Full configurat
 
 1. Standard create
 1. Engine type: **MariaDB**
-1. Engine Version: **11.4.7**
+1. Database creation method: **Full configuration**
 1. Templates: **Free tier**
+1. Engine Version: **11.4.7**
 1. DB instance identifier: **wordpress-db**
 1. Master username: **admin**
 1. Credentials management: **Self Managed**
 1. Auto generate a password: **Checked**
-1. DB instance class: **db.t3.micro**
+1. DB instance type: **db.t3.micro**
 1. Allocated storage: **20 GiB**
 1. Enable storage autoscaling: **Unchecked**
 1. Virtual private cloud (VPC): **Wordpress VPC**
@@ -50,8 +51,8 @@ Click **Create database** (part way down the screen) and select "Full configurat
 1. Availability Zone: **us-east-1a**
 1. Monitoring > Enable Enhanced monitoring: **Unchecked**
 1. Below the Monitoring section, Additional configuration > Initial database name: **wordpress** (Write the database name down! You will need this later.)
-1. Enable automated backups: **Unchecked**
 1. Enable encryption: **Unchecked**
+1. Enable automated backups: **Unchecked**
 
 Click **Create database**.
 

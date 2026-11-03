@@ -23,7 +23,7 @@ In this lab, you will create a database using the Relational Database Service. Y
 
 Start your session in the Learner Lab by clicking on the **Start Lab** button. Once the red dot has turned green, click on it to enter the Learner Lab and access the AWS Console interface. You are going to create a new RDS instance.
 
-From the **Console Home** navigate to **Database** > **RDS**. See the following screenshot for reference.
+From the **Console Home** navigate to **Database** > **Aurora and RDS**. See the following screenshot for reference.
 
 ![Relational Database](/img/rds.png)
 

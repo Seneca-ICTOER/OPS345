@@ -212,7 +212,7 @@ Next we define the container (or containers if running multiple), that will be r
 1. For the **Port mappings**, we'll use the production HTTP port, `80`. This is the default configuration: **Container port** is `80`, uses the `TCP` **Protocol**, and that the **App protocol** is `HTTP`. You can leave the **Port name** empty.
 1. For the **Resource allocation limits**, specify the amount of **CPU**, `1`, and **Memory**, `1` for the **Memory soft limit**. This means your container will reserve `512 MiB` of RAM when it starts (a **Hard limit** would define the _maximum_ memory allowed, which we won't set).
 1. The default values for **Logging** are good. ECS will use the [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) service to collect our container logs into a [Log Group](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CloudWatchLogsConcepts.html) named `/ecs/my-apache-app`. You should write this down for later, when you need to see the logs for your server.
-1. The default values for **Storage** are sufficient.
+1. Under **Storage** use **21** for the amount.
 
 Everything else should be good using the default configuration. You can now click the **Create** button (at the bottom).
 
@@ -224,7 +224,7 @@ Next we need to create a cluster where we can run our task.
 1. On the left side navigate to **Clusters**
 1. Click the **Create cluster** button
 1. Use the default **Cluster name**.
-1. Under **Infrastructure**, choose **Fargate only (serverless)**
+1. Under **Infrastructure**, choose **Fargate only**
 1. The default settings are good for all other options
 1. Click the **Create** button
 

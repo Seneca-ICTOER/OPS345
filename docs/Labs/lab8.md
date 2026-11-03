@@ -117,7 +117,7 @@ Now that we have our Wordpress config ready to go in our S3 bucket, we can move 
 
 ## Elastic Beanstalk Overview
 
-When you have installed Wordpress previously, you simply uploaded the source code and the first time you load the webpage, provided the database connector information. However, Elastic Beanstalk applications are meant to be disposable.
+When you have installed Wordpress previously, you simply uploaded the source code and provided the database connector information. However, Elastic Beanstalk applications are meant to be disposable.
 
 Normally, when you add that database connector info, it is saved in a file called _wp-config.php_ on the webserver VM. This is fine for a traditional setup. However, **_in Elastic Beanstalk, changes made to static HTML or PHP are not saved if the Beanstalk application restarts_**, which it will do often. Whenever the application restarts, it will reload from the source zip file and the original, empty connector file. If you did this the traditional way, you'd have to constantly re-enter your DB connector info every time you started up your Learner Lab environment.
 
@@ -220,9 +220,7 @@ Now we can move on to creating our Elastic Beanstalk environment.
 
 ### Creating the Elastic Beanstalk environment
 
-Navigate to **Compute** > **Elastic Beanstalk**. See the following screenshot for reference.
-
-![Elastic Beanstalk](/img/elasticbeanstalk.png)
+Navigate to **Compute** > **Elastic Beanstalk**.
 
 1. On the left hand side, click on **Applications**
 2. Click **Create application** in the top right of the screen.
@@ -252,7 +250,9 @@ Here we will build in the environment properties that we referred to earlier in 
 Before beginning this section, you will need two things:
 
 1. Your database connector information (you saved this, right?)
-1. Randomly generated auth keys and salts from here: https://api.wordpress.org/secret-key/1.1/salt/ (it's a good idea to save these in a text file, too)
+2. Randomly generated auth keys and salts from here: https://api.wordpress.org/secret-key/1.1/salt/ (it's a good idea to save these in a text file, too)
+
+It is really important to note here that these *salts* and *keys* would normally be kept in AWS in something called a *Secrets Manager*. That is the proper way to store security sensitive data such as this. However, like several other parts of AWS, we do not have access to that in the Learner Lab so we are storing them as plain text. This is an INCREDIBLY BAD IDEA if we were working in the real world. Plain text offers no encryption or any other security measures and that is dangerous. 
 
 1. Check **Add environment properties**
 2. Add enough environment properties so that you have 12 of them.
@@ -275,16 +275,21 @@ DB_HOST: **your RDS database URL**
 Select: **Web server environment**
 
 #### Environment type
+
 Select: **Single instance**
 
 #### Platform-specific options
+
 Proxy server: **apache**
+
 Document root: **/wordpress**
 
 #### Service Access
 
 Service role: **Use another role** >> **LabRole**
+
 EC2 instance profile: **Use another role** >> **LabInstanceProfile**
+
 EC2 key pair: **vockey**
 
 #### Infrastructure
@@ -294,13 +299,17 @@ Leave all defaults.
 #### Networking
 
 VPC: **Wordpress VPC**
+
 Instance Subnets: **Public Subnet 1, Public Subnet 2** (both checked)
+
 EC2 Security Groups: **Wordpress Website SG** & **Wordpress Database SG** (both checked)
 
 #### Monitoring and updates
 
 Monitoring: **Basic**
+
 Email notification: check the box and **Add your Seneca email**
+
 Managed platform updates: **Uncheck "Enable managed updates"**
 
 <!--
@@ -400,7 +409,7 @@ When the environment has successfully launched, click **Upload and Deploy** in t
 -->
 If your application fails to build, double check your **wp-config.php** configuration file for syntax errors. Additionally, make sure when you rezipped the file you only select the **wordpress** folder, not the main folder.
 
-## Investigation 5: Accessing Wordpress
+## Investigation 4: Accessing Wordpress
 
 When the environment successfully launches (the blue bar at the top of the screen turns green) you are ready to go.
 

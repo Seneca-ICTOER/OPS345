@@ -224,40 +224,88 @@ Navigate to **Compute** > **Elastic Beanstalk**. See the following screenshot fo
 
 ![Elastic Beanstalk](/img/elasticbeanstalk.png)
 
-Click **Create application**, and use the following settings:
+1. On the left hand side, click on **Applications**
+2. Click **Create application** in the top right of the screen.
+3. Name your application **wordpress**, give it a simple description, and click **create**.
+4. Click on the **wordpress** application you just created. Then click **Create environment**.
+5. You will now be in the "Create environment" screen. Use the following settings:
 
-### Environment Tier
+#### Deployment mode
+Set to **Standard**
+
+#### Basic details
+Application name: Leave as default (should be **wordpress**)
+Environment name: Leave as default (should be **Wordpress-env**)
+
+#### Platform details
+Platform: **PHP**
+Platform branch: **PHP 8.5** (or current latest)
+
+#### Application code 
+1. Select **S3 URI**
+2. Beside the S3 URI field, click **Browse S3**
+3. Click the bucket you created earlier, then check the zip file you have uploaded and click **Choose**
+
+#### Environment properties
+Here we will build in the environment properties that we referred to earlier in the wp-config.php file that we modified.
+
+Before beginning this section, you will need two things:
+
+1. Your database connector information (you saved this, right?)
+1. Randomly generated auth keys and salts from here: https://api.wordpress.org/secret-key/1.1/salt/ (it's a good idea to save these in a text file, too)
+
+1. Check **Add environment properties**
+2. Add enough environment properties so that you have 12 of them.
+3. Add in the following values:
+DB_HOST: **your RDS database URL**
+   - DB_NAME: **ebwordpress** (MAKE SURE YOU USE "ebwordpress" here and not the old database "wordpress" from lab 7)
+   - DB_USER: **admin**
+   - DB_PASSWORD: **your auto-generated database password**
+   - AUTH_KEY: **(use gathered info from salt page)**
+   - SECURE_AUTH_KEY: **(use gathered info from salt page)**
+   - LOGGED_IN_KEY: **(use gathered info from salt page)**
+   - NONCE_KEY: **(use gathered info from salt page)**
+   - AUTH_SALT: **(use gathered info from salt page)**
+   - SECURE_AUTH_SALT: **(use gathered info from salt page)**
+   - LOGGED_IN_SALT: **(use gathered info from salt page)**
+   - NONCE_SALT: **(use gathered info from salt page)**
+
+#### Environment Tier
 
 Select: **Web server environment**
 
-### Application information
+#### Environment type
+Select: **Single instance**
 
-1. Application name: **wordpress**
+#### Platform-specific options
+Proxy server: **apache**
+Document root: **/wordpress**
 
-### Environment information
-1. Environment name: **Wordpress-env**
+#### Service Access
 
-## Platform
-1. Platform: **PHP**
-1. Platform branch: **PHP 8.4** (or current latest)
-1. Application code: **Upload your code**
-1. Version label: **wordpress-6.7.2** (Use the version from your zip filename)
-1. Public S3 URL: **https://username-wordpress.s3.us-east-1.amazonaws.com/wordpress-6.8.1-modded.zip** (Where **username** is **your Seneca username** and the zip file is the one you uploaded)
+Service role: **Use another role** >> **LabRole**
+EC2 instance profile: **Use another role** >> **LabInstanceProfile**
+EC2 key pair: **vockey**
 
-## Presets
-1. Presets: **Single instance (free tier eligible)**
+#### Infrastructure
 
-Click next
+Leave all defaults.
 
-### Configure Service Access
+#### Networking
 
-Select: Use an existing service role
+VPC: **Wordpress VPC**
+Instance Subnets: **Public Subnet 1, Public Subnet 2** (both checked)
+EC2 Security Groups: **Wordpress Website SG** & **Wordpress Database SG** (both checked)
 
-1. Service role: **LabRole**
-1. EC2 instance profile: **LabInstanceProfile**
-1. EC2 key pair: **vockey**
+#### Monitoring and updates
 
-Click next
+Monitoring: **Basic**
+Email notification: check the box and **Add your Seneca email**
+Managed platform updates: **Uncheck "Enable managed updates"**
+
+<!--
+
+
 
 ### Set up networking, database and tags
 
@@ -342,8 +390,14 @@ Review all settings and ensure they match the instructions above. Once you hit *
 
 click **Submit** when ready.
 
-While you wait for the creation to complete, check your e-mail to confirm your notification subscription.
+-->
 
+Click **Create**
+
+While you wait for the creation to complete, check your e-mail to confirm your notification subscription.
+<!--
+When the environment has successfully launched, click **Upload and Deploy** in the top right hand side.
+-->
 If your application fails to build, double check your **wp-config.php** configuration file for syntax errors. Additionally, make sure when you rezipped the file you only select the **wordpress** folder, not the main folder.
 
 ## Investigation 5: Accessing Wordpress

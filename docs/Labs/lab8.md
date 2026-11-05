@@ -427,6 +427,14 @@ Set the following site information:
 
 > If you get a message indicating a failure to connect, make sure you zipped the **wordpress** folder and it's contents only. You can rezip the file and click **Upload and deploy** if necessary.
 
+### Switching to Plan Text Permalinks
+
+There is a small issue with the way new versions of Wordpress treat permalinks by default. This will cause formatting errors in our database so we are going to change it back to a format that can be used.
+
+1. Log into your Wordpress admin panel (Wordpress-env.something.us-east-1.elasticbeanstalk.com/wp-admin/)
+2. On the left hand side, click on **Settings** and then on **Permalinks**.
+3. You should find that the current setting for **Permalink structure** is set to **Day and Name**. Change this to **Post name** and save your changes.
+
 ### Blog Post:
 
 Add a blog post detailing the following:

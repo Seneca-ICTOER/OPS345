@@ -427,7 +427,7 @@ Set the following site information:
 
 > If you get a message indicating a failure to connect, make sure you zipped the **wordpress** folder and it's contents only. You can rezip the file and click **Upload and deploy** if necessary.
 
-### Switching to Plan Text Permalinks
+### Changing Permalink Structure
 
 There is a small issue with the way new versions of Wordpress treat permalinks by default. This will cause formatting errors in our database so we are going to change it back to a format that can be used.
 

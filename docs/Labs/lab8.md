@@ -257,7 +257,7 @@ It is really important to note here that these *salts* and *keys* would normally
 1. Check **Add environment properties**
 2. Add enough environment properties so that you have 12 of them.
 3. Add in the following values:
-DB_HOST: **your RDS database URL**
+   - DB_HOST: **your RDS database URL**
    - DB_NAME: **ebwordpress** (MAKE SURE YOU USE "ebwordpress" here and not the old database "wordpress" from lab 7)
    - DB_USER: **admin**
    - DB_PASSWORD: **your auto-generated database password**

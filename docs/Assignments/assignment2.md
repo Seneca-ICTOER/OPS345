@@ -58,14 +58,18 @@ Try navigating to **a2.username.mystudentproject.ca** where **username** is your
 
 1. Log back into the WP admin panel (a2.username.mystudentproject.ca/wp-admin)
 
-2. Add a blog post detailing the following. You may need to do a little light research.
+2. On the left hand side, click on **Settings** and then on **Permalinks**.
+
+3. Change the **Permalink structure** to **Plain** and save your changes.
+
+4. Add a blog post detailing the following. You may need to do a little light research.
 
 - What is **Load Balancing**?
 - What is **Horizontal Scaling** aka **Scaling Out**?
 - What is **Vertical Scaling** aka **Scaling Up**?
 - What is **Auto Scaling**?
 
-3. Add a second blog post detailing the following:
+5. Add a second blog post detailing the following:
 - What did you think of this assignment?
 - What was the most difficult part for you?
 - What was the easiest part for you?

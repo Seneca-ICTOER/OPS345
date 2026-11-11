@@ -301,7 +301,7 @@ Create a route table:
 
 Now we are going to create some security groups and define their allowed to traffic so we can control what is and is not allowed into our virtual network.
 
-**Security Group** settings are located in the left side navigation under **Security** > **Security Groups**. Click on **Security Groups**. Note: You can also access **Security groups** through **EC2** (as you did in lab 5). The menu they are under is different.
+**Security Group** settings are located in the left side navigation under **Security** > **Security Groups**. Click on **Security Groups**. Note: You can also access **Security groups** through **EC2**. The menu they are under is different.
 
 Click on **Create security group** and create a security group with the following settings
 

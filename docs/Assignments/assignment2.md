@@ -45,7 +45,7 @@ Navigate to [Elastic Beanstalk Console](https://console.aws.amazon.com/elasticbe
 
 1. Navigate to your Wordpress main page by clicking on the link provided in the Elastic Beanstalk **Environment Overview**. You should see your blog post from lab 8.
 
-1. In another web browser tab, login to [My.Custom.Domain](https://mycustomdomain.senecapolytechnic.ca/). Repeat the steps from lab 4 to add a record, with the following information:
+1. In another web browser tab, login to [My.Custom.Domain](https://mycustomdomain.senecapolytechnic.ca/). Repeat the steps from lab 6 to add a record, with the following information:
 - Name: **a2**
 - Type: **CNAME Record**
 - Value: **Your elastic beanstalk application URL** ie **wordpress-env.eba-pehkxxfr.us-east-1.elasticbeanstalk.com**
